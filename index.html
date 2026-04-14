@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tiernahrung LOB – Premium-Fachhandel in Aachen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ─── PALETTE TOKENS (Airbnb Design System) ─────────────────────────────── */
+    :root {
+      --palette-bg-primary-core:    #ff385c;   /* Rausch Red */
+      --palette-bg-tertiary-core:   #e00b41;   /* Deep Rausch */
+      --palette-text-primary:       #222222;   /* Near-black */
+      --palette-text-focused:       #3f3f3f;
+      --palette-text-secondary:     #6a6a6a;
+      --palette-text-disabled:      rgba(0,0,0,0.24);
+      --palette-border:             #dddddd;
+      --palette-border-light:       rgba(0,0,0,0.08);
+      --palette-surface:            #f7f7f7;
+      --palette-white:              #ffffff;
+
+      /* Shadows */
+      --shadow-card: rgba(0,0,0,0.02) 0px 0px 0px 1px,
+                     rgba(0,0,0,0.04) 0px 2px 6px,
+                     rgba(0,0,0,0.10) 0px 4px 8px;
+      --shadow-hover: rgba(0,0,0,0.08) 0px 4px 12px;
+      --shadow-focus: rgb(255,255,255) 0px 0px 0px 4px;
+
+      /* Radius */
+      --r-xs:     4px;
+      --r-sm:     8px;
+      --r-badge:  14px;
+      --r-card:   20px;
+      --r-lg:     32px;
+      --r-circle: 50%;
+
+      /* Typography */
+      --font: 'Plus Jakarta Sans', 'Circular', -apple-system, system-ui,
+              'Helvetica Neue', Roboto, sans-serif;
+    }
+
+    /* ─── RESET ─────────────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font);
+      color: var(--palette-text-primary);
+      background: var(--palette-white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+    ul { list-style: none; }
+
+    /* ─── NAVIGATION ─────────────────────────────────────────────────────────── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--palette-border);
+    }
+    .nav-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .nav-logo-mark {
+      width: 36px;
+      height: 36px;
+      background: var(--palette-bg-primary-core);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-logo-mark svg { width: 20px; height: 20px; fill: white; }
+    .nav-logo-text {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--palette-text-primary);
+      letter-spacing: -0.3px;
+    }
+    .nav-logo-text em {
+      font-style: normal;
+      color: var(--palette-bg-primary-core);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2px;
+      flex: 1;
+    }
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--palette-text-secondary);
+      padding: 8px 12px;
+      border-radius: var(--r-sm);
+      transition: color 0.15s, background 0.15s;
+    }
+    .nav-links a:hover {
+      color: var(--palette-text-primary);
+      background: var(--palette-surface);
+    }
+    .nav-links .nav-sale {
+      color: var(--palette-bg-primary-core);
+      font-weight: 700;
+    }
+    .nav-links .nav-sale:hover { background: rgba(255,56,92,0.06); }
+    .nav-actions { display: flex; align-items: center; gap: 8px; }
+    .nav-icon-btn {
+      width: 40px; height: 40px;
+      border-radius: var(--r-circle);
+      background: transparent;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--palette-text-primary);
+      transition: background 0.15s;
+    }
+    .nav-icon-btn:hover { background: var(--palette-surface); }
+    .nav-icon-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--palette-white);
+      background: var(--palette-text-primary);
+      padding: 10px 20px;
+      border-radius: var(--r-sm);
+      transition: background 0.2s, transform 0.1s;
+    }
+    .nav-cta:hover {
+      background: var(--palette-bg-primary-core);
+      transform: translateY(-1px);
+    }
+
+    /* ─── HERO ───────────────────────────────────────────────────────────────── */
+    .hero-wrap {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 64px 24px 80px;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--palette-bg-primary-core);
+      background: rgba(255,56,92,0.08);
+      padding: 6px 12px;
+      border-radius: var(--r-badge);
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+    .hero-headline {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.08;
+      letter-spacing: -1.2px;
+      color: var(--palette-text-primary);
+      margin-bottom: 20px;
+    }
+    .hero-headline .word-wrap {
+      display: block;
+      overflow: hidden;
+      height: 1.12em;
+    }
+    .animated-word {
+      display: block;
+      color: var(--palette-bg-primary-core);
+      transition: transform 0.35s cubic-bezier(0.4,0,0.2,1),
+                  opacity 0.35s ease;
+    }
+    .hero-sub {
+      font-size: 17px;
+      font-weight: 400;
+      color: var(--palette-text-secondary);
+      line-height: 1.65;
+      max-width: 440px;
+      margin-bottom: 36px;
+    }
+    .hero-ctas {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--palette-white);
+      background: var(--palette-bg-primary-core);
+      padding: 14px 28px;
+      border-radius: var(--r-sm);
+      transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--palette-bg-tertiary-core);
+      transform: translateY(-1px);
+      box-shadow: rgba(255,56,92,0.3) 0px 8px 20px;
+    }
+    .btn-primary:active { transform: scale(0.97); }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--palette-text-primary);
+      background: var(--palette-surface);
+      padding: 14px 28px;
+      border-radius: var(--r-sm);
+      transition: box-shadow 0.2s, background 0.15s;
+    }
+    .btn-ghost:hover { box-shadow: var(--shadow-hover); background: #eeeeee; }
+
+    /* Hero Visual */
+    .hero-visual { position: relative; }
+    .hero-card-main {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      aspect-ratio: 4/3.2;
+      background: linear-gradient(135deg, #fde8cc 0%, #fbbf88 40%, #f59559 100%);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    /* Decorative paw pattern */
+    .hero-card-main::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.15) 0%, transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.1) 0%, transparent 25%);
+    }
+    .hero-emoji {
+      font-size: 96px;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.15));
+      position: relative;
+    }
+    .hero-float-badge {
+      position: absolute;
+      background: var(--palette-white);
+      box-shadow: var(--shadow-card);
+      border-radius: var(--r-card);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: floatBadge 3s ease-in-out infinite;
+    }
+    .hero-float-badge.badge-rating {
+      bottom: -18px;
+      left: -28px;
+    }
+    .hero-float-badge.badge-open {
+      top: 20px;
+      right: -20px;
+    }
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+    .badge-icon { font-size: 26px; line-height: 1; }
+    .badge-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--palette-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .badge-value {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--palette-text-primary);
+      letter-spacing: -0.3px;
+    }
+    .badge-dot {
+      width: 8px; height: 8px;
+      background: #22c55e;
+      border-radius: var(--r-circle);
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
+    }
+
+    /* ─── CATEGORY PILL BAR ──────────────────────────────────────────────────── */
+    .cat-bar {
+      border-top: 1px solid var(--palette-border);
+      border-bottom: 1px solid var(--palette-border);
+      position: relative;
+    }
+    .cat-bar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .cat-bar-inner::-webkit-scrollbar { display: none; }
+    .cat-pill {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      padding: 14px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--palette-text-secondary);
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: color 0.15s, border-color 0.15s;
+      white-space: nowrap;
+      user-select: none;
+    }
+    .cat-pill-icon { font-size: 22px; }
+    .cat-pill:hover { color: var(--palette-text-primary); }
+    .cat-pill.active {
+      color: var(--palette-text-primary);
+      border-bottom-color: var(--palette-text-primary);
+    }
+
+    /* ─── SECTION BASE ───────────────────────────────────────────────────────── */
+    .section {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      gap: 16px;
+    }
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.44px;
+      color: var(--palette-text-primary);
+    }
+    .section-link {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--palette-text-primary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: color 0.15s;
+    }
+    .section-link:hover { color: var(--palette-bg-primary-core); }
+
+    /* ─── CATEGORY CARDS ─────────────────────────────────────────────────────── */
+    .cat-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .cat-card {
+      border-radius: var(--r-lg);
+      overflow: hidden;
+      aspect-ratio: 3/2;
+      position: relative;
+      cursor: pointer;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s;
+    }
+    .cat-card:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: rgba(0,0,0,0.15) 0px 16px 40px;
+    }
+    .cat-card-bg {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 72px;
+      transition: transform 0.4s ease;
+    }
+    .cat-card:hover .cat-card-bg { transform: scale(1.06); }
+    .bg-food {
+      background: linear-gradient(140deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+    }
+    .bg-accessories {
+      background: linear-gradient(140deg, #2c1654 0%, #5c2d91 60%, #8e44ad 100%);
+    }
+    .bg-advice {
+      background: linear-gradient(140deg, #134e5e 0%, #1e8449 60%, #71b280 100%);
+    }
+    .cat-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.1) 55%, transparent 100%);
+    }
+    .cat-card-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 24px;
+      color: var(--palette-white);
+    }
+    .cat-card-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.44px;
+      margin-bottom: 3px;
+    }
+    .cat-card-sub {
+      font-size: 13px;
+      font-weight: 400;
+      opacity: 0.75;
+    }
+    .cat-card-arrow {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 36px;
+      height: 36px;
+      border-radius: var(--r-circle);
+      background: rgba(255,255,255,0.18);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .cat-card:hover .cat-card-arrow {
+      background: var(--palette-bg-primary-core);
+      transform: translate(2px, -2px);
+    }
+
+    /* ─── PRODUCT GRID ───────────────────────────────────────────────────────── */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .product-card {
+      border-radius: var(--r-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      background: var(--palette-white);
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: rgba(0,0,0,0.12) 0px 12px 32px;
+    }
+    .product-img-wrap {
+      aspect-ratio: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+      overflow: hidden;
+    }
+    .product-img-wrap.theme-josera  { background: linear-gradient(135deg, #e8f5f0, #a8d8c8); }
+    .product-img-wrap.theme-belcando { background: linear-gradient(135deg, #fef9e7, #f8d99a); }
+    .product-img-wrap.theme-mjamjam  { background: linear-gradient(135deg, #fce4ec, #f8a8c8); }
+    .product-img-wrap.theme-edgard   { background: linear-gradient(135deg, #e8f5e9, #a5d6a7); }
+    .product-badge-top {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--palette-white);
+      background: var(--palette-bg-primary-core);
+      padding: 3px 8px;
+      border-radius: var(--r-badge);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .product-wish {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 32px; height: 32px;
+      border-radius: var(--r-circle);
+      background: rgba(255,255,255,0.9);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.12);
+      transition: transform 0.15s, background 0.15s;
+      cursor: pointer;
+      user-select: none;
+    }
+    .product-wish:hover { transform: scale(1.12); background: white; }
+    .product-wish.active { color: var(--palette-bg-primary-core); }
+    .product-info { padding: 14px 16px 16px; }
+    .product-brand {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--palette-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 3px;
+    }
+    .product-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--palette-text-primary);
+      letter-spacing: -0.1px;
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }
+    .product-desc {
+      font-size: 13px;
+      color: var(--palette-text-secondary);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .product-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .product-price {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--palette-text-primary);
+    }
+    .product-price-old {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--palette-text-secondary);
+      text-decoration: line-through;
+      margin-left: 4px;
+    }
+    .product-add {
+      width: 34px; height: 34px;
+      border-radius: var(--r-circle);
+      background: var(--palette-bg-primary-core);
+      color: white;
+      font-size: 20px;
+      line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s, transform 0.15s;
+    }
+    .product-add:hover {
+      background: var(--palette-bg-tertiary-core);
+      transform: scale(1.1);
+    }
+
+    /* ─── CONCEPT SECTION ────────────────────────────────────────────────────── */
+    .concept-bg {
+      background: var(--palette-surface);
+    }
+    .concept-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 72px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .concept-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--palette-bg-primary-core);
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      margin-bottom: 10px;
+    }
+    .concept-title {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      color: var(--palette-text-primary);
+      margin-bottom: 16px;
+    }
+    .concept-text {
+      font-size: 16px;
+      color: var(--palette-text-secondary);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .concept-brands {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .brand-chip {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--palette-text-primary);
+      background: var(--palette-white);
+      padding: 6px 14px;
+      border-radius: var(--r-badge);
+      box-shadow: var(--shadow-card);
+      transition: box-shadow 0.15s;
+    }
+    .brand-chip:hover { box-shadow: var(--shadow-hover); }
+    .concept-phone {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--palette-text-primary);
+      letter-spacing: -0.3px;
+      transition: color 0.15s;
+    }
+    .concept-phone:hover { color: var(--palette-bg-primary-core); }
+    .concept-phone-icon {
+      width: 44px; height: 44px;
+      border-radius: var(--r-circle);
+      background: rgba(255,56,92,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    /* USP Cards */
+    .usp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .usp-card {
+      background: var(--palette-white);
+      border-radius: var(--r-card);
+      padding: 24px;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .usp-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+    .usp-card.full-width { grid-column: 1 / -1; display: flex; align-items: center; gap: 18px; }
+    .usp-icon { font-size: 28px; margin-bottom: 12px; display: block; }
+    .usp-card.full-width .usp-icon { margin-bottom: 0; font-size: 36px; }
+    .usp-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--palette-text-primary);
+      margin-bottom: 4px;
+    }
+    .usp-desc {
+      font-size: 13px;
+      color: var(--palette-text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ─── VORTEILE STRIP ─────────────────────────────────────────────────────── */
+    .vorteile-strip {
+      background: var(--palette-text-primary);
+    }
+    .vorteile-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 40px 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+    .vorteil {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      color: var(--palette-white);
+    }
+    .vorteil-icon {
+      width: 48px; height: 48px;
+      border-radius: var(--r-circle);
+      background: rgba(255,255,255,0.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+    .vorteil-title {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .vorteil-sub {
+      font-size: 12px;
+      opacity: 0.55;
+    }
+
+    /* ─── BLOG ───────────────────────────────────────────────────────────────── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .blog-card {
+      border-radius: var(--r-card);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      background: var(--palette-white);
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .blog-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+    .blog-img {
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 56px;
+      overflow: hidden;
+      position: relative;
+    }
+    .blog-img.bi-1 { background: linear-gradient(135deg, #dbeafe, #93c5fd, #3b82f6); }
+    .blog-img.bi-2 { background: linear-gradient(135deg, #fdf4ff, #e879f9, #a855f7); }
+    .blog-content { padding: 22px; }
+    .blog-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .blog-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--palette-bg-primary-core);
+      background: rgba(255,56,92,0.08);
+      padding: 3px 9px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    .blog-date {
+      font-size: 12px;
+      color: var(--palette-text-secondary);
+    }
+    .blog-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .blog-excerpt {
+      font-size: 14px;
+      color: var(--palette-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ─── ANGEBOTE / DEALS ───────────────────────────────────────────────────── */
+    .deals-bg { background: var(--palette-text-primary); }
+    .deals-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 72px 24px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 48px;
+      align-items: center;
+    }
+    .deals-title {
+      font-size: 40px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
+      line-height: 1.1;
+      color: var(--palette-white);
+      margin-bottom: 12px;
+    }
+    .deals-title .accent { color: var(--palette-bg-primary-core); }
+    .deals-sub {
+      font-size: 16px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+      max-width: 480px;
+      margin-bottom: 28px;
+    }
+    .deals-code-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .deals-code-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .deals-code {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      color: var(--palette-bg-primary-core);
+      background: rgba(255,56,92,0.1);
+      border: 1px solid rgba(255,56,92,0.3);
+      padding: 12px 22px;
+      border-radius: var(--r-card);
+    }
+    .deals-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      opacity: 0.9;
+    }
+    .deals-visual-icon { font-size: 88px; line-height: 1; }
+    .deals-partner {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+    }
+
+    /* ─── PARTNERS STRIP ─────────────────────────────────────────────────────── */
+    .partners-strip { border-bottom: 1px solid var(--palette-border); }
+    .partners-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .partners-inner::-webkit-scrollbar { display: none; }
+    .partner-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--palette-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      white-space: nowrap;
+      margin-right: 8px;
+    }
+    .partner-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--palette-text-secondary);
+      background: var(--palette-surface);
+      padding: 8px 16px;
+      border-radius: var(--r-card);
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: color 0.15s, background 0.15s, box-shadow 0.15s;
+    }
+    .partner-chip:hover {
+      color: var(--palette-text-primary);
+      background: var(--palette-white);
+      box-shadow: var(--shadow-card);
+    }
+
+    /* ─── HOURS / INFO BAR ───────────────────────────────────────────────────── */
+    .info-bar { border-top: 1px solid var(--palette-border); }
+    .info-bar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 32px 24px;
+      display: flex;
+      align-items: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 28px;
+      border-right: 1px solid var(--palette-border);
+    }
+    .info-item:first-child { padding-left: 0; }
+    .info-item:last-of-type { border-right: none; }
+    .info-icon {
+      width: 38px; height: 38px;
+      border-radius: var(--r-circle);
+      background: var(--palette-surface);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px;
+      flex-shrink: 0;
+    }
+    .info-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--palette-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 2px;
+    }
+    .info-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--palette-text-primary);
+    }
+    .info-social {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+    }
+    .social-btn {
+      width: 40px; height: 40px;
+      border-radius: var(--r-circle);
+      background: var(--palette-surface);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px;
+      cursor: pointer;
+      transition: box-shadow 0.15s, background 0.15s;
+    }
+    .social-btn:hover { box-shadow: var(--shadow-hover); background: var(--palette-white); }
+
+    /* ─── FOOTER ─────────────────────────────────────────────────────────────── */
+    .footer { background: var(--palette-surface); }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 52px 24px 28px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 44px;
+      padding-bottom: 44px;
+      border-bottom: 1px solid var(--palette-border);
+    }
+    .footer-logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--palette-text-primary);
+      margin-bottom: 12px;
+    }
+    .footer-logo em { font-style: normal; color: var(--palette-bg-primary-core); }
+    .footer-desc {
+      font-size: 14px;
+      color: var(--palette-text-secondary);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .footer-socials { display: flex; gap: 8px; }
+    .footer-col-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--palette-text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 18px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 11px; }
+    .footer-links a {
+      font-size: 14px;
+      color: var(--palette-text-secondary);
+      transition: color 0.15s;
+    }
+    .footer-links a:hover { color: var(--palette-text-primary); }
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-copy { font-size: 13px; color: var(--palette-text-secondary); }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 13px; color: var(--palette-text-secondary); transition: color 0.15s; }
+    .footer-legal a:hover { color: var(--palette-text-primary); }
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .products-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 860px) {
+      .hero-wrap { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .hero-headline { font-size: 42px; }
+      .cat-cards { grid-template-columns: 1fr; }
+      .concept-inner { grid-template-columns: 1fr; }
+      .usp-grid { display: none; }
+      .blog-grid { grid-template-columns: 1fr; }
+      .deals-inner { grid-template-columns: 1fr; }
+      .deals-visual { display: none; }
+      .vorteile-inner { grid-template-columns: repeat(2, 1fr); }
+      .info-item { padding: 8px 16px; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hero-headline { font-size: 34px; }
+      .section { padding: 48px 16px; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .vorteile-inner { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .info-bar-inner { gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════ NAVIGATION ═══════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-mark">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <!-- Paw icon -->
+          <ellipse cx="12" cy="17" rx="5" ry="3.5"/>
+          <circle cx="7.5" cy="11.5" r="2"/>
+          <circle cx="16.5" cy="11.5" r="2"/>
+          <circle cx="10" cy="9" r="1.5"/>
+          <circle cx="14" cy="9" r="1.5"/>
+        </svg>
+      </div>
+      <span class="nav-logo-text"><em>LOB</em> Tiernahrung</span>
+    </a>
+
+    <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Über Uns</a>
+      <a href="#">Ratgeber</a>
+      <a href="#">Sortiment</a>
+      <a href="#" class="nav-sale">% Sale %</a>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="nav-icon-btn" title="Suche">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round"/></svg>
+      </button>
+      <button class="nav-icon-btn" title="Warenkorb">
+        <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" stroke-linecap="round" stroke-linejoin="round"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0" stroke-linecap="round"/></svg>
+      </button>
+      <a href="tel:024146367536" class="nav-cta">
+        <svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:white;fill:none;stroke-width:2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.36 2 2 0 0 1 3.6 1.14h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Kontakt
+      </a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ═══════════════════════════ HERO ═════════════════════════════════════════ -->
+<section>
+  <div class="hero-wrap">
+    <div class="hero-content">
+      <div class="hero-tag">🏪 Fachhandel · Aachen seit 2010</div>
+      <h1 class="hero-headline">
+        Für mehr<br>
+        <span class="word-wrap"><span class="animated-word" id="animWord">WEDELN</span></span>
+      </h1>
+      <p class="hero-sub">
+        Premium-Tiernahrung &amp; Zubehör für Hunde, Katzen, Pferde und mehr.
+        Persönliche Beratung vom Experten — direkt vor Ort in Aachen.
+      </p>
+      <div class="hero-ctas">
+        <a href="#sortiment" class="btn-primary">Sortiment entdecken →</a>
+        <a href="tel:024146367536" class="btn-ghost">📞 Jetzt anrufen</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card-main">
+        <div class="hero-emoji">🐕</div>
+      </div>
+      <div class="hero-float-badge badge-rating">
+        <div class="badge-icon">⭐</div>
+        <div>
+          <div class="badge-label">Google Bewertung</div>
+          <div class="badge-value">4.9 / 5.0</div>
+        </div>
+      </div>
+      <div class="hero-float-badge badge-open">
+        <div class="badge-dot"></div>
+        <div>
+          <div class="badge-label">Status</div>
+          <div class="badge-value" style="font-size:14px">Jetzt geöffnet</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════ CATEGORY PILL BAR ════════════════════════════ -->
+<div class="cat-bar">
+  <div class="cat-bar-inner" id="catBar">
+    <div class="cat-pill active"><span class="cat-pill-icon">🐶</span>Hunde</div>
+    <div class="cat-pill"><span class="cat-pill-icon">🐱</span>Katzen</div>
+    <div class="cat-pill"><span class="cat-pill-icon">🐴</span>Pferde</div>
+    <div class="cat-pill"><span class="cat-pill-icon">🐦</span>Vögel</div>
+    <div class="cat-pill"><span class="cat-pill-icon">🥦</span>Vegan</div>
+    <div class="cat-pill"><span class="cat-pill-icon">🌾</span>Getreidefrei</div>
+    <div class="cat-pill"><span class="cat-pill-icon">💊</span>Ergänzung</div>
+    <div class="cat-pill"><span class="cat-pill-icon">🎯</span>Zubehör</div>
+    <div class="cat-pill"><span class="cat-pill-icon">🏷️</span>Sale</div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════ KATEGORIEN ═══════════════════════════════════ -->
+<section class="section" id="sortiment">
+  <div class="section-header">
+    <h2 class="section-title">Verwöhn-Produkte für Fellnasen</h2>
+    <a href="#" class="section-link">Alle Kategorien →</a>
+  </div>
+  <div class="cat-cards">
+    <div class="cat-card reveal">
+      <div class="cat-card-bg bg-food">🥩</div>
+      <div class="cat-card-overlay"></div>
+      <div class="cat-card-arrow">→</div>
+      <div class="cat-card-content">
+        <div class="cat-card-title">Tiernahrung</div>
+        <div class="cat-card-sub">Natürlich premium — Nass-, Trockenfutter &amp; Leckerchen</div>
+      </div>
+    </div>
+    <div class="cat-card reveal" style="transition-delay:0.08s">
+      <div class="cat-card-bg bg-accessories">🎾</div>
+      <div class="cat-card-overlay"></div>
+      <div class="cat-card-arrow">→</div>
+      <div class="cat-card-content">
+        <div class="cat-card-title">Zubehör</div>
+        <div class="cat-card-sub">Von der Leine übers Spielzeug bis zum Hundekissen</div>
+      </div>
+    </div>
+    <div class="cat-card reveal" style="transition-delay:0.16s">
+      <div class="cat-card-bg bg-advice">💬</div>
+      <div class="cat-card-overlay"></div>
+      <div class="cat-card-arrow">→</div>
+      <div class="cat-card-content">
+        <div class="cat-card-title">Beratung</div>
+        <div class="cat-card-sub">Persönlich &amp; individuell — für Hund, Katze und Pferd</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════ BESTSELLER ═══════════════════════════════════ -->
+<section class="section" style="padding-top:0">
+  <div class="section-header">
+    <h2 class="section-title">Bestseller</h2>
+    <a href="#" class="section-link">Mehr zeigen →</a>
+  </div>
+  <div class="products-grid">
+
+    <!-- Vegdog -->
+    <div class="product-card reveal">
+      <div class="product-img-wrap theme-josera">
+        🌱
+        <div class="product-badge-top">Vegan</div>
+        <div class="product-wish" data-wish>♡</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Vegdog</div>
+        <div class="product-name">Complete Light</div>
+        <div class="product-desc">Veganes Trockenfutter für Hunde, getreide- &amp; glutenfrei</div>
+        <div class="product-foot">
+          <div class="product-price">ab 18,90 €</div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Belcando -->
+    <div class="product-card reveal" style="transition-delay:0.08s">
+      <div class="product-img-wrap theme-belcando">
+        🐾
+        <div class="product-wish" data-wish>♡</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Belcando</div>
+        <div class="product-name">Adult Sensitive Grain-Free</div>
+        <div class="product-desc">Getreidfreies Trockenfutter, ideal bei Unverträglichkeiten</div>
+        <div class="product-foot">
+          <div class="product-price">ab 24,90 €</div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MjAMjAM -->
+    <div class="product-card reveal" style="transition-delay:0.16s">
+      <div class="product-img-wrap theme-mjamjam">
+        🐱
+        <div class="product-badge-top">Bestseller</div>
+        <div class="product-wish" data-wish>♡</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">MjAMjAM</div>
+        <div class="product-name">Purer Fleischgenuss</div>
+        <div class="product-desc">Hochwertiges Nassfutter für Katzen, ohne Getreide</div>
+        <div class="product-foot">
+          <div class="product-price">ab 1,29 €</div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Edgard & Cooper -->
+    <div class="product-card reveal" style="transition-delay:0.24s">
+      <div class="product-img-wrap theme-edgard">
+        🌿
+        <div class="product-wish" data-wish>♡</div>
+      </div>
+      <div class="product-info">
+        <div class="product-brand">Edgard &amp; Cooper</div>
+        <div class="product-name">Free-Run Chicken Adult</div>
+        <div class="product-desc">Trockenfutter mit frischem Freilandhuhn</div>
+        <div class="product-foot">
+          <div class="product-price">
+            ab 22,00 €
+            <span class="product-price-old">27,99 €</span>
+          </div>
+          <button class="product-add">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════ VORTEILE STRIP ═══════════════════════════════ -->
+<div class="vorteile-strip">
+  <div class="vorteile-inner">
+    <div class="vorteil reveal">
+      <div class="vorteil-icon">🤝</div>
+      <div>
+        <div class="vorteil-title">Persönlich</div>
+        <div class="vorteil-sub">Beratung vom Chef höchstpersönlich</div>
+      </div>
+    </div>
+    <div class="vorteil reveal" style="transition-delay:0.08s">
+      <div class="vorteil-icon">🎓</div>
+      <div>
+        <div class="vorteil-title">Professionell</div>
+        <div class="vorteil-sub">Von Tierärzten empfohlen</div>
+      </div>
+    </div>
+    <div class="vorteil reveal" style="transition-delay:0.16s">
+      <div class="vorteil-icon">🏆</div>
+      <div>
+        <div class="vorteil-title">Qualitativ</div>
+        <div class="vorteil-sub">Nur ausgesuchte Premium-Produkte</div>
+      </div>
+    </div>
+    <div class="vorteil reveal" style="transition-delay:0.24s">
+      <div class="vorteil-icon">🌱</div>
+      <div>
+        <div class="vorteil-title">Nachhaltig</div>
+        <div class="vorteil-sub">Verantwortungsvoll &amp; ethisch</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════ KONZEPT ══════════════════════════════════════ -->
+<section class="concept-bg">
+  <div class="concept-inner">
+    <div class="concept-content reveal">
+      <div class="concept-label">Unser Konzept</div>
+      <h2 class="concept-title">Tiernahrung bedeutet uns<br>mehr als nur Futter</h2>
+      <p class="concept-text">
+        In unserem Fachhandel steht die persönliche Beratung an erster Stelle.
+        Wir führen ausschließlich hochwertige Tiernahrung und speziell ausgewählte
+        Produkte namhafter Marken — weil Ihr Liebling das Beste verdient.
+        Neben Hundefutter, Katzenfutter und Pferdefutter finden Sie bei uns alles
+        aus einer Hand.
+      </p>
+      <div class="concept-brands">
+        <span class="brand-chip">JOSERA</span>
+        <span class="brand-chip">Belcando</span>
+        <span class="brand-chip">Eat Small</span>
+        <span class="brand-chip">Green Petfood</span>
+        <span class="brand-chip">Anny-X</span>
+        <span class="brand-chip">Vegdog</span>
+        <span class="brand-chip">MjAMjAM</span>
+      </div>
+      <a href="tel:024146367536" class="concept-phone">
+        <div class="concept-phone-icon">📞</div>
+        0241 – 46 36 7536
+      </a>
+    </div>
+    <div class="usp-grid reveal">
+      <div class="usp-card full-width">
+        <span class="usp-icon">🤝</span>
+        <div>
+          <div class="usp-title">Persönliche Beratung</div>
+          <div class="usp-desc">Der Chef höchstpersönlich sowie sein Team Paul stehen täglich für Sie bereit</div>
+        </div>
+      </div>
+      <div class="usp-card">
+        <span class="usp-icon">🎓</span>
+        <div class="usp-title">Von Tierärzten empfohlen</div>
+        <div class="usp-desc">Medizinisch fundierte Futterempfehlungen</div>
+      </div>
+      <div class="usp-card">
+        <span class="usp-icon">🏆</span>
+        <div class="usp-title">Premium-Qualität</div>
+        <div class="usp-desc">Nur sorgfältig ausgewählte Produkte</div>
+      </div>
+      <div class="usp-card full-width">
+        <span class="usp-icon">🌱</span>
+        <div>
+          <div class="usp-title">Nachhaltigkeit</div>
+          <div class="usp-desc">Ethische &amp; umweltbewusste Produktauswahl — gut für Ihr Tier und den Planeten</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════ BLOG / RATGEBER ══════════════════════════════ -->
+<section class="section">
+  <div class="section-header">
+    <h2 class="section-title">Unser Ratgeber</h2>
+    <a href="#" class="section-link">Alle Artikel →</a>
+  </div>
+  <div class="blog-grid">
+    <div class="blog-card reveal">
+      <div class="blog-img bi-1">🍽️</div>
+      <div class="blog-content">
+        <div class="blog-meta">
+          <span class="blog-tag">Ernährung</span>
+          <span class="blog-date">13. November 2023</span>
+        </div>
+        <h3 class="blog-title">Die Frage der Fragen — Nass- oder Trockenfutter?</h3>
+        <p class="blog-excerpt">Ein fundierter Vergleich der beiden Fütterungsarten und worauf es wirklich ankommt, wenn Sie das Beste für Ihren Hund wollen.</p>
+      </div>
+    </div>
+    <div class="blog-card reveal" style="transition-delay:0.1s">
+      <div class="blog-img bi-2">🐱</div>
+      <div class="blog-content">
+        <div class="blog-meta">
+          <span class="blog-tag">Katzenfutter</span>
+          <span class="blog-date">13. November 2023</span>
+        </div>
+        <h3 class="blog-title">Katzenfutter ohne Getreide: Gesundheitsfakt oder bloßer Trend?</h3>
+        <p class="blog-excerpt">Was steckt wirklich hinter der Getreidefreiheit und welche konkreten Vorteile bringt sie für Ihre Katze?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════ ANGEBOTE / DEALS ═════════════════════════════ -->
+<section class="deals-bg">
+  <div class="deals-inner">
+    <div>
+      <h2 class="deals-title">
+        Aktuelle Angebote<br>
+        bei <span class="accent">noms+</span>
+      </h2>
+      <p class="deals-sub">
+        Jetzt bei unserem Partner-Shop bestellen und mit dem exklusiven
+        Rabattcode sparen. Melden Sie sich über WhatsApp an und verpassen
+        Sie keine Deals mehr.
+      </p>
+      <div class="deals-code-wrap">
+        <div>
+          <div class="deals-code-label">Ihr Rabattcode</div>
+          <div class="deals-code">🏷️ LOB15</div>
+        </div>
+      </div>
+      <a href="#" class="btn-primary">Zu den Black Deals →</a>
+    </div>
+    <div class="deals-visual">
+      <div class="deals-visual-icon">🎁</div>
+      <div class="deals-partner">Partner: noms+ Shop</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════ PARTNER LOGOS ════════════════════════════════ -->
+<div class="partners-strip">
+  <div class="partners-inner">
+    <span class="partner-label">Unsere Marken</span>
+    <span class="partner-chip">🐾 JOSERA</span>
+    <span class="partner-chip">🌿 Belcando</span>
+    <span class="partner-chip">🌱 Vegdog</span>
+    <span class="partner-chip">🐟 MjAMjAM</span>
+    <span class="partner-chip">🌾 Eat Small</span>
+    <span class="partner-chip">🍃 Green Petfood</span>
+    <span class="partner-chip">🎽 Anny-X</span>
+    <span class="partner-chip">🛍️ noms+</span>
+    <span class="partner-chip">🐕 Edgard &amp; Cooper</span>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════ INFO / HOURS BAR ═════════════════════════════ -->
+<div class="info-bar">
+  <div class="info-bar-inner">
+    <div class="info-item">
+      <div class="info-icon">🕐</div>
+      <div>
+        <div class="info-label">Öffnungszeiten</div>
+        <div class="info-value">Mo–Fr 10–18 Uhr · Sa 10–14 Uhr</div>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📍</div>
+      <div>
+        <div class="info-label">Adresse</div>
+        <div class="info-value">Süsterfeldstraße 83, Aachen</div>
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-icon">📞</div>
+      <div>
+        <div class="info-label">Telefon</div>
+        <div class="info-value"><a href="tel:024146367536">0241 – 46 36 7536</a></div>
+      </div>
+    </div>
+    <div class="info-social">
+      <div class="social-btn" title="Instagram">📷</div>
+      <div class="social-btn" title="Facebook">📘</div>
+      <div class="social-btn" title="WhatsApp">💬</div>
+      <div class="social-btn" title="Google Maps">🗺️</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════ FOOTER ═══════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo"><em>LOB</em> Tiernahrung</div>
+        <p class="footer-desc">
+          Ihr persönlicher Fachhandel für Premium-Tiernahrung und Zubehör
+          in Aachen. Kundenzufriedenheit wird bei uns großgeschrieben —
+          seit über 10 Jahren.
+        </p>
+        <div class="footer-socials">
+          <div class="social-btn" title="Instagram">📷</div>
+          <div class="social-btn" title="Facebook">📘</div>
+          <div class="social-btn" title="WhatsApp">💬</div>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Sortiment</div>
+        <ul class="footer-links">
+          <li><a href="#">Trockenfutter</a></li>
+          <li><a href="#">Nassfutter</a></li>
+          <li><a href="#">Leckerchen</a></li>
+          <li><a href="#">Zubehör</a></li>
+          <li><a href="#">% Sale %</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Unternehmen</div>
+        <ul class="footer-links">
+          <li><a href="#">Über Uns</a></li>
+          <li><a href="#">Ratgeber &amp; Blog</a></li>
+          <li><a href="#">Partner</a></li>
+          <li><a href="#">App downloaden</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Service</div>
+        <ul class="footer-links">
+          <li><a href="#">Kontakt</a></li>
+          <li><a href="#">Impressum</a></li>
+          <li><a href="#">Datenschutz</a></li>
+          <li><a href="tel:024146367536">0241 – 46 36 7536</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2024 Tiernahrung LOB · Süsterfeldstraße 83 · Aachen</div>
+      <div class="footer-legal">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+        <a href="#">AGB</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════ JAVASCRIPT ═══════════════════════════════════ -->
+<script>
+  /* ── Animated hero word ──────────────────────────────────────────────────── */
+  const words = ['WEDELN', 'SCHNURREN', 'WIEHERN', 'ZWITSCHERN', 'MIAUEN', 'SCHNUPPERN'];
+  let wordIdx = 0;
+  const wordEl = document.getElementById('animWord');
+
+  function cycleWord() {
+    // Slide out upward
+    wordEl.style.transform = 'translateY(-100%)';
+    wordEl.style.opacity   = '0';
+
+    setTimeout(() => {
+      wordIdx = (wordIdx + 1) % words.length;
+      wordEl.textContent = words[wordIdx];
+      // Snap to below, then slide in
+      wordEl.style.transition = 'none';
+      wordEl.style.transform  = 'translateY(100%)';
+      wordEl.style.opacity    = '0';
+
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        wordEl.style.transition = 'transform 0.35s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease';
+        wordEl.style.transform  = 'translateY(0)';
+        wordEl.style.opacity    = '1';
+      }));
+    }, 350);
+  }
+
+  setInterval(cycleWord, 2200);
+
+  /* ── Category pill interaction ───────────────────────────────────────────── */
+  document.querySelectorAll('.cat-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+
+  /* ── Wishlist heart toggle ───────────────────────────────────────────────── */
+  document.querySelectorAll('[data-wish]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const active = btn.classList.toggle('active');
+      btn.textContent = active ? '♥' : '♡';
+    });
+  });
+
+  /* ── Scroll reveal ───────────────────────────────────────────────────────── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
