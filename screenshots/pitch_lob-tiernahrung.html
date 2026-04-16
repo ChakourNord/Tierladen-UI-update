@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>LOB Tiernahrung – Website Pitch</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          "primary":                "#003a53",
+          "on-primary":             "#ffffff",
+          "primary-container":      "#1a516e",
+          "on-primary-container":   "#92c3e5",
+          "secondary":              "#775a00",
+          "secondary-container":    "#fdcb4b",
+          "on-secondary-container": "#715600",
+          "surface":                "#fcf9f5",
+          "surface-container-low":  "#f6f3ef",
+          "surface-container":      "#f0edea",
+          "surface-container-high": "#ebe8e4",
+          "surface-container-highest":"#e5e2de",
+          "on-surface":             "#1c1c1a",
+          "on-surface-variant":     "#41484d",
+          "outline":                "#71787e",
+          "outline-variant":        "#c1c7ce",
+          "error":                  "#ba1a1a",
+          "background":             "#fcf9f5",
+        },
+        fontFamily: {
+          sans: ["Plus Jakarta Sans", "sans-serif"],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background: #fcf9f5; color: #1c1c1a; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; vertical-align: middle; }
+  .editorial-gradient { background: linear-gradient(135deg, #003a53 0%, #1a516e 100%); }
+  .problem-enter { animation: slideUp .4s ease both; }
+  @keyframes slideUp { from { opacity:0; transform:translateY(16px);} to { opacity:1; transform:none;} }
+  .tab-btn.active { background:#003a53; color:#fff; }
+  .tab-content { display:none; }
+  .tab-content.active { display:block; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     COVER
+═══════════════════════════════════════════════ -->
+<section class="relative min-h-[560px] flex items-end overflow-hidden editorial-gradient">
+  <!-- decorative pets icon -->
+  <span class="material-symbols-outlined absolute top-10 right-16 text-white/5 select-none pointer-events-none"
+        style="font-size:320px; font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">pets</span>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-8 pb-16 pt-24 w-full">
+    <!-- label -->
+    <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container text-xs font-black uppercase tracking-widest mb-8">
+      <span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+      Vertraulich · April 2026
+    </span>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-end">
+      <div>
+        <h1 class="text-6xl md:text-7xl font-black tracking-tighter text-white leading-[.88] mb-6">
+          Warum diese<br/>Website<br/><span class="text-secondary-container">Umsatz kostet.</span>
+        </h1>
+        <p class="text-xl text-white/70 leading-relaxed max-w-lg">
+          Eine ehrliche Analyse von <strong class="text-white">lob-tiernahrung.de</strong> –
+          mit konkreten Belegen und dem Designvorschlag für die neue Website.
+        </p>
+      </div>
+      <!-- stat cards -->
+      <div class="grid grid-cols-3 gap-4">
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/10 text-center">
+          <div class="text-4xl font-black text-red-300 mb-1">3</div>
+          <div class="text-xs font-bold text-white/60 uppercase tracking-wide">Kritische<br/>Fehler</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/10 text-center">
+          <div class="text-4xl font-black text-amber-300 mb-1">6</div>
+          <div class="text-xs font-bold text-white/60 uppercase tracking-wide">Weitere<br/>Probleme</div>
+        </div>
+        <div class="bg-secondary-container/30 backdrop-blur-md rounded-2xl p-5 border border-secondary-container/40 text-center">
+          <div class="text-4xl font-black text-secondary-container mb-1">∞</div>
+          <div class="text-xs font-bold text-white/60 uppercase tracking-wide">Umsatz-<br/>potenzial</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- anchor nav -->
+    <div class="flex flex-wrap gap-3 mt-14 pt-8 border-t border-white/10">
+      <a href="#analyse" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-bold transition-all">01 · Analyse</a>
+      <a href="#design" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-bold transition-all">02 · Design-Vorschlag</a>
+      <a href="#top5" class="px-5 py-2.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-sm font-bold transition-all">03 · Verkaufsargumente</a>
+      <a href="#pitch" class="px-5 py-2.5 rounded-full bg-secondary-container/80 hover:bg-secondary-container text-on-secondary-container text-sm font-black transition-all">04 · Pitch-Sätze</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 01 – ANALYSE
+═══════════════════════════════════════════════ -->
+<section id="analyse" class="py-24 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8">
+
+  <!-- heading -->
+  <div class="flex items-start gap-6 mb-16 border-l-8 border-secondary pl-8">
+    <div>
+      <p class="text-xs font-black text-secondary tracking-widest uppercase mb-2">01 · Ist-Zustand</p>
+      <h2 class="text-5xl font-black tracking-tighter text-primary">Gefundene Schwachstellen</h2>
+      <p class="text-on-surface-variant mt-3 text-lg">Alle Punkte basieren auf einer Live-Analyse vom April 2026.</p>
+    </div>
+  </div>
+
+  <!-- ─── KRITISCH ─── -->
+  <div class="mb-4 flex items-center gap-3">
+    <span class="w-3 h-3 rounded-full bg-red-500"></span>
+    <span class="text-sm font-black uppercase tracking-widest text-red-600">Kritisch — sofort handeln</span>
+  </div>
+
+  <!-- Problem 1 -->
+  <div class="bg-white rounded-3xl overflow-hidden shadow-sm mb-6 border-l-4 border-red-500">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
+      <!-- left -->
+      <div class="lg:col-span-3 p-10">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-sm font-black">1</span>
+          <span class="text-xs font-black text-red-500 uppercase tracking-widest">Technisch · Alle Seiten betroffen</span>
+        </div>
+        <h3 class="text-2xl font-black text-primary mb-3">Kaputtes Plugin-Shortcode in der Navigation</h3>
+        <p class="text-on-surface-variant leading-relaxed mb-6">
+          In der Navigationsleiste jeder Seite steht für alle Besucher sichtbar der rohe WordPress-Code:
+          <code class="bg-red-50 text-red-600 px-2 py-0.5 rounded text-sm font-mono">[ivory-search id="650" title="AJAX Search Form"]</code>.
+          Das Plugin ist entweder deinstalliert oder defekt — der Code wurde nie entfernt.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-red-50 border border-red-100 rounded-2xl p-5">
+            <p class="text-xs font-black text-red-500 uppercase tracking-widest mb-2">💥 Auswirkung</p>
+            <p class="text-sm text-red-800 leading-relaxed">Jeder Erstbesucher sieht es sofort. Das Signal: „Diese Website ist kaputt." Vertrauen weg — in Sekunden.</p>
+          </div>
+          <div class="bg-green-50 border border-green-100 rounded-2xl p-5">
+            <p class="text-xs font-black text-green-600 uppercase tracking-widest mb-2">✅ Lösung</p>
+            <p class="text-sm text-green-800 leading-relaxed">Plugin reparieren oder Shortcode aus dem Template entfernen. 10 Minuten Arbeit.</p>
+          </div>
+        </div>
+      </div>
+      <!-- right: visual mockup -->
+      <div class="lg:col-span-2 bg-surface-container-highest flex items-center justify-center p-8">
+        <div class="w-full bg-white rounded-2xl overflow-hidden shadow-lg border border-outline-variant">
+          <!-- mock nav -->
+          <div class="bg-[#1a3a5c] px-4 py-3 flex items-center gap-3">
+            <div class="w-6 h-6 rounded-full bg-white/30"></div>
+            <div class="flex gap-3 text-[10px] text-white/60">
+              <span>HOME</span><span>SORTIMENT</span><span>BLOG</span>
+            </div>
+            <div class="ml-auto bg-red-500 text-white text-[9px] font-black px-2 py-1 rounded animate-pulse">
+              [ivory-search…]
+            </div>
+          </div>
+          <div class="p-4 space-y-2">
+            <div class="h-2 bg-red-100 rounded w-full"></div>
+            <div class="h-2 bg-gray-100 rounded w-3/4"></div>
+            <div class="h-2 bg-gray-100 rounded w-1/2"></div>
+          </div>
+          <div class="px-4 pb-4">
+            <div class="bg-red-50 border border-red-200 rounded-xl p-3 text-center">
+              <p class="text-red-600 text-xs font-bold">⚠️ Fehler auf jeder einzelnen Seite sichtbar</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Problem 2 -->
+  <div class="bg-white rounded-3xl overflow-hidden shadow-sm mb-6 border-l-4 border-red-500">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
+      <div class="lg:col-span-3 p-10">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-sm font-black">2</span>
+          <span class="text-xs font-black text-red-500 uppercase tracking-widest">Kein Shop · Täglicher Umsatzverlust</span>
+        </div>
+        <h3 class="text-2xl font-black text-primary mb-3">Kein echter Online-Shop – nur Affiliate-Weiterleitungen</h3>
+        <p class="text-on-surface-variant leading-relaxed mb-6">
+          Die Sortiment-Seite zeigt explizit „Bestellbare <strong>Affiliate</strong> Produkte" — Kunden werden zu Drittanbieter-Shops weitergeleitet. Kein Warenkorb, keine E-Mail-Adresse, keine Kundenbindung. Der gesamte Online-Umsatz geht an andere.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-red-50 border border-red-100 rounded-2xl p-5">
+            <p class="text-xs font-black text-red-500 uppercase tracking-widest mb-2">💥 Auswirkung</p>
+            <p class="text-sm text-red-800 leading-relaxed">Jeder Online-Besucher, der kaufen möchte, verlässt die Website. Das ist bares Geld, das täglich verloren geht — 365 Tage im Jahr.</p>
+          </div>
+          <div class="bg-green-50 border border-green-100 rounded-2xl p-5">
+            <p class="text-xs font-black text-green-600 uppercase tracking-widest mb-2">✅ Lösung</p>
+            <p class="text-sm text-green-800 leading-relaxed">Eigener WooCommerce-Shop mit Warenkorb, Checkout, Kundenkonto und Newsletter-Integration.</p>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-2 bg-surface-container-highest flex items-center justify-center p-8">
+        <div class="w-full bg-white rounded-2xl overflow-hidden shadow-lg border border-outline-variant">
+          <div class="bg-amber-500 px-4 py-3 text-center text-white font-black text-sm">SORTIMENT</div>
+          <div class="p-4">
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-center mb-4">
+              <p class="text-amber-700 text-xs font-black">⚠️ „Bestellbare Affiliate Produkte"</p>
+              <p class="text-amber-600 text-[10px] mt-1">Kein echter Kauf möglich</p>
+            </div>
+            <div class="grid grid-cols-3 gap-2">
+              <div class="border border-outline-variant rounded-xl p-2 text-center"><div class="h-8 bg-gray-100 rounded mb-1"></div><div class="text-[9px] text-red-500 font-bold">→ Extern</div></div>
+              <div class="border border-outline-variant rounded-xl p-2 text-center"><div class="h-8 bg-gray-100 rounded mb-1"></div><div class="text-[9px] text-red-500 font-bold">→ Extern</div></div>
+              <div class="border border-outline-variant rounded-xl p-2 text-center"><div class="h-8 bg-gray-100 rounded mb-1"></div><div class="text-[9px] text-red-500 font-bold">→ Extern</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Problem 3 -->
+  <div class="bg-white rounded-3xl overflow-hidden shadow-sm mb-12 border-l-4 border-red-500">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-0">
+      <div class="lg:col-span-3 p-10">
+        <div class="flex items-center gap-3 mb-5">
+          <span class="w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-sm font-black">3</span>
+          <span class="text-xs font-black text-red-500 uppercase tracking-widest">Veralteter Inhalt · Vertrauensverlust</span>
+        </div>
+        <h3 class="text-2xl font-black text-primary mb-3">Black-Friday-Aktion läuft noch — im April 2026</h3>
+        <p class="text-on-surface-variant leading-relaxed mb-6">
+          Im Angebotsbereich der Startseite steht noch aktiv: <em>„Jetzt Black Deals bei noms+ sichern"</em>. Black Friday war im November 2025. Diese veraltete Aktion wurde seit mindestens 5 Monaten nicht aktualisiert.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-red-50 border border-red-100 rounded-2xl p-5">
+            <p class="text-xs font-black text-red-500 uppercase tracking-widest mb-2">💥 Auswirkung</p>
+            <p class="text-sm text-red-800 leading-relaxed">Besucher denken: „Hier kümmert sich niemand mehr." Ein veraltetes Angebot zerstört das Premium-Image sofort.</p>
+          </div>
+          <div class="bg-green-50 border border-green-100 rounded-2xl p-5">
+            <p class="text-xs font-black text-green-600 uppercase tracking-widest mb-2">✅ Lösung</p>
+            <p class="text-sm text-green-800 leading-relaxed">Aktionsbereich mit automatischem Ablaufdatum, monatlichen Wechsel-Highlights und saisonalem Redaktionskalender.</p>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-2 bg-surface-container-highest flex items-center justify-center p-8">
+        <div class="w-full bg-amber-400 rounded-2xl p-6 shadow-lg text-center">
+          <div class="bg-white/20 inline-block px-3 py-1 rounded-lg font-bold text-sm text-white mb-3">Futter-Deals</div>
+          <p class="font-black text-white text-lg mb-2">Jetzt Black Deals bei noms+ sichern</p>
+          <p class="text-white/80 text-sm mb-4">Per WhatsApp anmelden und sparen.</p>
+          <div class="bg-red-500 text-white rounded-xl px-4 py-2 text-sm font-black inline-block">
+            ❌ Black Friday war November 2025
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── WEITERE PROBLEME ─── -->
+  <div class="mb-4 flex items-center gap-3">
+    <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+    <span class="text-sm font-black uppercase tracking-widest text-amber-600">Conversion &amp; UX — dringend verbessern</span>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+
+    <!-- P4 -->
+    <div class="bg-white rounded-3xl p-8 shadow-sm border-l-4 border-amber-400">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-7 h-7 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-sm font-black">4</span>
+        <span class="text-xs font-black text-amber-500 uppercase tracking-widest">Kein CTA · Hero-Section</span>
+      </div>
+      <h3 class="text-xl font-black text-primary mb-3">Hero ohne Handlungsaufruf</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed mb-4">Das animierte Wort „WEDELN/WIEHERN" ist dekorativ — kein einziger Button wie „Jetzt beraten lassen" oder „Sortiment entdecken" ist vorhanden.</p>
+      <div class="flex gap-3">
+        <div class="flex-1 bg-amber-50 rounded-xl p-3 text-xs text-amber-800"><strong>💥</strong> 70 % der Besucher verlassen eine Seite ohne CTA innerhalb von 10 Sekunden.</div>
+        <div class="flex-1 bg-green-50 rounded-xl p-3 text-xs text-green-800"><strong>✅</strong> Prominenter CTA-Button direkt im Hero — wie im Designvorschlag gezeigt.</div>
+      </div>
+    </div>
+
+    <!-- P5 -->
+    <div class="bg-white rounded-3xl p-8 shadow-sm border-l-4 border-amber-400">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-7 h-7 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-sm font-black">5</span>
+        <span class="text-xs font-black text-amber-500 uppercase tracking-widest">Mobile · Navigation</span>
+      </div>
+      <h3 class="text-xl font-black text-primary mb-3">Keine mobile Navigation</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed mb-4">Auf Smartphones bleibt die vollständige Desktop-Navigation bestehen — kein Hamburger-Menü. Alle Punkte sind gequetscht und unbedienbar.</p>
+      <div class="flex gap-3">
+        <div class="flex-1 bg-amber-50 rounded-xl p-3 text-xs text-amber-800"><strong>💥</strong> Über 60 % des Traffics kommt von Smartphones — alle haben eine schlechte Erfahrung.</div>
+        <div class="flex-1 bg-green-50 rounded-xl p-3 text-xs text-green-800"><strong>✅</strong> Vollständig responsive Navigation mit Touch-optimierten Buttons.</div>
+      </div>
+    </div>
+
+    <!-- P6 -->
+    <div class="bg-white rounded-3xl p-8 shadow-sm border-l-4 border-amber-400">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-7 h-7 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-sm font-black">6</span>
+        <span class="text-xs font-black text-amber-500 uppercase tracking-widest">Layout · Leerraum</span>
+      </div>
+      <h3 class="text-xl font-black text-primary mb-3">Riesiger Leerraum auf drei Seiten</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed mb-4">Auf Startseite, Sortiment und Sale gibt es fehlerhafte Abstände von mehreren hundert Pixeln. Besucher denken, die Seite lädt noch oder ist defekt.</p>
+      <div class="flex gap-3">
+        <div class="flex-1 bg-amber-50 rounded-xl p-3 text-xs text-amber-800"><strong>💥</strong> Absprungrate steigt stark — Inhalte darunter (Produkte, Kontakt) werden nie gesehen.</div>
+        <div class="flex-1 bg-green-50 rounded-xl p-3 text-xs text-green-800"><strong>✅</strong> Bereinigung der Elementor-Sektionen, klare Seitenstruktur ohne toten Raum.</div>
+      </div>
+    </div>
+
+    <!-- P7 -->
+    <div class="bg-white rounded-3xl p-8 shadow-sm border-l-4 border-primary/30">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-black">7</span>
+        <span class="text-xs font-black text-primary/60 uppercase tracking-widest">Trust · Social Proof</span>
+      </div>
+      <h3 class="text-xl font-black text-primary mb-3">Kein Social Proof sichtbar</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed mb-4">Trust-Elemente sind drei kleine Icons ohne Beweis. Keine Google-Bewertungen, keine Sternchen, keine echten Kundenstimmen — obwohl LOB sicher exzellente Reviews hat.</p>
+      <div class="flex gap-3">
+        <div class="flex-1 bg-blue-50 rounded-xl p-3 text-xs text-blue-800"><strong>💥</strong> 92 % der Käufer lesen Bewertungen vor dem Kauf. Ohne Beweis wirken Versprechen leer.</div>
+        <div class="flex-1 bg-green-50 rounded-xl p-3 text-xs text-green-800"><strong>✅</strong> Google Reviews Widget, Kundenzitate mit Foto und echten Namen einbinden.</div>
+      </div>
+    </div>
+
+    <!-- P8 -->
+    <div class="bg-white rounded-3xl p-8 shadow-sm border-l-4 border-primary/30">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-black">8</span>
+        <span class="text-xs font-black text-primary/60 uppercase tracking-widest">Content · SEO</span>
+      </div>
+      <h3 class="text-xl font-black text-primary mb-3">Blog seit 2,5 Jahren eingeschlafen</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed mb-4">Genau 2 Artikel, beide vom 13. November 2023, Autor: „Redakteur". Keine neue Aktivität seither — weder für SEO noch für Stammkunden-Bindung.</p>
+      <div class="flex gap-3">
+        <div class="flex-1 bg-blue-50 rounded-xl p-3 text-xs text-blue-800"><strong>💥</strong> Google bestraft inaktive Seiten. Kunden fragen sich: „Ist der Laden noch offen?"</div>
+        <div class="flex-1 bg-green-50 rounded-xl p-3 text-xs text-green-800"><strong>✅</strong> 1–2 Artikel/Monat mit echtem Expertenwissen, Autorenbild und Datum.</div>
+      </div>
+    </div>
+
+    <!-- P9 -->
+    <div class="bg-white rounded-3xl p-8 shadow-sm border-l-4 border-primary/30">
+      <div class="flex items-center gap-3 mb-4">
+        <span class="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-black">9</span>
+        <span class="text-xs font-black text-primary/60 uppercase tracking-widest">Footer · Kontakt</span>
+      </div>
+      <h3 class="text-xl font-black text-primary mb-3">Maps gesperrt &amp; karger Footer</h3>
+      <p class="text-on-surface-variant text-sm leading-relaxed mb-4">Google Maps blockiert durch Cookie-Banner. Footer hat nur 4 Links — keine Öffnungszeiten, keine E-Mail, kein Newsletter. Ein verpasster Touchpoint.</p>
+      <div class="flex gap-3">
+        <div class="flex-1 bg-blue-50 rounded-xl p-3 text-xs text-blue-800"><strong>💥</strong> Wer den Laden nicht findet, kommt nicht. Blockierte Karte frustriert und schreckt ab.</div>
+        <div class="flex-1 bg-green-50 rounded-xl p-3 text-xs text-green-800"><strong>✅</strong> Cookie-freie Karte, Öffnungszeiten prominent, Newsletter-Feld und vollständiger Footer.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 02 – DESIGN-VORSCHLAG
+═══════════════════════════════════════════════ -->
+<section id="design" class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+
+  <div class="flex items-start gap-6 mb-16 border-l-8 border-secondary pl-8">
+    <div>
+      <p class="text-xs font-black text-secondary tracking-widest uppercase mb-2">02 · Wie es aussehen könnte</p>
+      <h2 class="text-5xl font-black tracking-tighter text-primary">Unser Design-Vorschlag</h2>
+      <p class="text-on-surface-variant mt-3 text-lg">Drei voll ausgearbeitete Seiten — fertig zum Einsetzen.</p>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="flex gap-3 mb-8 flex-wrap">
+    <button onclick="switchTab('startseite')" class="tab-btn active px-6 py-3 rounded-full font-bold text-sm border-2 border-primary transition-all">Startseite</button>
+    <button onclick="switchTab('sortiment')" class="tab-btn px-6 py-3 rounded-full font-bold text-sm border-2 border-primary text-primary transition-all">Sortiment</button>
+    <button onclick="switchTab('blog')" class="tab-btn px-6 py-3 rounded-full font-bold text-sm border-2 border-primary text-primary transition-all">Blog / Magazin</button>
+  </div>
+
+  <!-- Tab: Startseite -->
+  <div id="tab-startseite" class="tab-content active">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+      <!-- iframe preview -->
+      <div class="relative group">
+        <div class="absolute -inset-2 bg-secondary/30 rounded-[2rem] -rotate-1 scale-95 group-hover:rotate-0 transition-all duration-500"></div>
+        <div class="relative bg-white rounded-3xl overflow-hidden shadow-2xl border border-outline-variant">
+          <!-- browser chrome -->
+          <div class="bg-surface-container px-4 py-3 flex items-center gap-2 border-b border-outline-variant">
+            <div class="flex gap-1.5"><div class="w-3 h-3 rounded-full bg-red-400"></div><div class="w-3 h-3 rounded-full bg-amber-400"></div><div class="w-3 h-3 rounded-full bg-green-400"></div></div>
+            <div class="flex-1 bg-white rounded-lg px-3 py-1 text-xs text-on-surface-variant font-mono ml-2">lob-tiernahrung.de</div>
+          </div>
+          <div class="iframe-wrap" style="width:100%; overflow:hidden;">
+            <iframe src="../stitch/startseite.html" scrolling="no" style="width:100%; border:none; display:block; pointer-events:none;" class="design-frame" id="frame-startseite"></iframe>
+          </div>
+        </div>
+      </div>
+      <!-- What's new -->
+      <div class="space-y-5 pt-4">
+        <h3 class="text-3xl font-black text-primary tracking-tight">Was sich ändert</h3>
+        <div class="space-y-4">
+          <div class="flex gap-4 p-5 bg-green-50 border border-green-100 rounded-2xl">
+            <span class="material-symbols-outlined text-green-600 text-2xl flex-shrink-0">check_circle</span>
+            <div><strong class="text-green-800 text-sm">Glasmorphismus-Navigation</strong><p class="text-green-700 text-sm mt-1">Saubere, fixe Nav mit mobilem Hamburger-Menü. Kein Shortcode, kein Clutter.</p></div>
+          </div>
+          <div class="flex gap-4 p-5 bg-green-50 border border-green-100 rounded-2xl">
+            <span class="material-symbols-outlined text-green-600 text-2xl flex-shrink-0">check_circle</span>
+            <div><strong class="text-green-800 text-sm">Starker Hero mit zwei CTAs</strong><p class="text-green-700 text-sm mt-1">„Store entdecken" + „Unser Sortiment" — klare Nutzerführung ab der ersten Sekunde.</p></div>
+          </div>
+          <div class="flex gap-4 p-5 bg-green-50 border border-green-100 rounded-2xl">
+            <span class="material-symbols-outlined text-green-600 text-2xl flex-shrink-0">check_circle</span>
+            <div><strong class="text-green-800 text-sm">Aktuelle Angebote mit echtem Inhalt</strong><p class="text-green-700 text-sm mt-1">Frühlings-Special statt Black Friday. Strukturiert, datiert, aktuell.</p></div>
+          </div>
+          <div class="flex gap-4 p-5 bg-green-50 border border-green-100 rounded-2xl">
+            <span class="material-symbols-outlined text-green-600 text-2xl flex-shrink-0">check_circle</span>
+            <div><strong class="text-green-800 text-sm">Newsletter im Footer</strong><p class="text-green-700 text-sm mt-1">Leads werden direkt auf der Website gesammelt — kein Besucher geht verloren.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab: Sortiment -->
+  <div id="tab-sortiment" class="tab-content">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+      <div class="relative group">
+        <div class="absolute -inset-2 bg-secondary/30 rounded-[2rem] -rotate-1 scale-95 group-hover:rotate-0 transition-all duration-500"></div>
+        <div class="relative bg-white rounded-3xl overflow-hidden shadow-2xl border border-outline-variant">
+          <div class="bg-surface-container px-4 py-3 flex items-center gap-2 border-b border-outline-variant">
+            <div class="flex gap-1.5"><div class="w-3 h-3 rounded-full bg-red-400"></div><div class="w-3 h-3 rounded-full bg-amber-400"></div><div class="w-3 h-3 rounded-full bg-green-400"></div></div>
+            <div class="flex-1 bg-white rounded-lg px-3 py-1 text-xs text-on-surface-variant font-mono ml-2">lob-tiernahrung.de/sortiment</div>
+          </div>
+          <div class="iframe-wrap" style="width:100%; overflow:hidden;">
+            <iframe src="../stitch/sortiment.html" scrolling="no" style="width:100%; border:none; display:block; pointer-events:none;" class="design-frame" id="frame-sortiment"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="space-y-5 pt-4">
+        <h3 class="text-3xl font-black text-primary tracking-tight">Echte Produkte, echte Preise</h3>
+        <div class="space-y-4">
+          <div class="flex gap-4 p-5 bg-green-50 border border-green-100 rounded-2xl">
+            <span class="material-symbols-outlined text-green-600 text-2xl flex-shrink-0">check_circle</span>
+            <div><strong class="text-green-800 text-sm">Filter nach Tierart &amp; Bedarf</strong><p class="text-green-700 text-sm mt-1">Hunde, Katzen, Spezialdiäten — klare Kategorien mit Hover-Zoom-Effekt.</p></div>
+          </div>
+          <div class="flex gap-4 p-5 bg-green-50 border border-green-100 rounded-2xl">
+            <span class="material-symbols-outlined text-green-600 text-2xl flex-shrink-0">check_circle</span>
+            <div><strong class="text-green-800 text-sm">Kein „Affiliate" mehr</strong><p class="text-green-700 text-sm mt-1">Produkte mit echten Preisen, Warenkorb und Checkout — direkt auf der Website.</p></div>
+          </div>
+          <div class="flex gap-4 p-5 bg-green-50 border border-green-100 rounded-2xl">
+            <span class="material-symbols-outlined text-green-600 text-2xl flex-shrink-0">check_circle</span>
+            <div><strong class="text-green-800 text-sm">Zero Leerraum</strong><p class="text-green-700 text-sm mt-1">Saubere Grid-Struktur ohne toten Weißraum. Jeder Pixel zählt.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tab: Blog -->
+  <div id="tab-blog" class="tab-content">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+      <div class="relative group">
+        <div class="absolute -inset-2 bg-secondary/30 rounded-[2rem] -rotate-1 scale-95 group-hover:rotate-0 transition-all duration-500"></div>
+        <div class="relative bg-white rounded-3xl overflow-hidden shadow-2xl border border-outline-variant">
+          <div class="bg-surface-container px-4 py-3 flex items-center gap-2 border-b border-outline-variant">
+            <div class="flex gap-1.5"><div class="w-3 h-3 rounded-full bg-red-400"></div><div class="w-3 h-3 rounded-full bg-amber-400"></div><div class="w-3 h-3 rounded-full bg-green-400"></div></div>
+            <div class="flex-1 bg-white rounded-lg px-3 py-1 text-xs text-on-surface-variant font-mono ml-2">lob-tiernahrung.de/magazin</div>
+          </div>
+          <div class="iframe-wrap" style="width:100%; overflow:hidden;">
+            <iframe src="../stitch/blog.html" scrolling="no" style="width:100%; border:none; display:block; pointer-events:none;" class="design-frame" id="frame-blog"></iframe>
+          </div>
+        </div>
+      </div>
+      <div class="space-y-5 pt-4">
+        <h3 class="text-3xl font-black text-primary tracking-tight">Vom Blog zum Magazin</h3>
+        <div class="space-y-4">
+          <div class="flex gap-4 p-5 bg-green-50 border border-green-100 rounded-2xl">
+            <span class="material-symbols-outlined text-green-600 text-2xl flex-shrink-0">check_circle</span>
+            <div><strong class="text-green-800 text-sm">Editorialer Look</strong><p class="text-green-700 text-sm mt-1">Featured Artikel groß, Kategorie-Tags, echte Autorenprofile — professionell wie ein Fachmagazin.</p></div>
+          </div>
+          <div class="flex gap-4 p-5 bg-green-50 border border-green-100 rounded-2xl">
+            <span class="material-symbols-outlined text-green-600 text-2xl flex-shrink-0">check_circle</span>
+            <div><strong class="text-green-800 text-sm">SEO-Magnet</strong><p class="text-green-700 text-sm mt-1">Regelmäßige Inhalte zu Hundefutter, Katzengesundheit, Ernährungsberatung — genau das, was Kunden googeln.</p></div>
+          </div>
+          <div class="flex gap-4 p-5 bg-green-50 border border-green-100 rounded-2xl">
+            <span class="material-symbols-outlined text-green-600 text-2xl flex-shrink-0">check_circle</span>
+            <div><strong class="text-green-800 text-sm">Vertrauensaufbau</strong><p class="text-green-700 text-sm mt-1">Fachwissen sichtbar machen = Expertenstatus aufbauen, bevor der Kunde im Laden steht.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 03 – TOP 5
+═══════════════════════════════════════════════ -->
+<section id="top5" class="py-24 editorial-gradient overflow-hidden">
+<div class="max-w-7xl mx-auto px-8 relative">
+  <span class="material-symbols-outlined absolute top-0 right-8 text-white/5 select-none pointer-events-none"
+        style="font-size:280px; font-variation-settings:'FILL' 1,'wght' 700,'GRAD' 0,'opsz' 48;">trophy</span>
+
+  <div class="mb-16">
+    <p class="text-xs font-black text-secondary-container tracking-widest uppercase mb-3">03 · Die stärksten Argumente</p>
+    <h2 class="text-5xl font-black tracking-tighter text-white">Top 5 für das Gespräch</h2>
+    <p class="text-white/60 mt-3 text-lg max-w-xl">Rational + emotional. Direkt verwendbar.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <div class="bg-white/8 backdrop-blur-md border border-white/10 rounded-3xl p-8 relative hover:-translate-y-1 transition-transform">
+      <span class="text-[80px] font-black text-white/8 absolute top-4 right-6 leading-none select-none">1</span>
+      <span class="material-symbols-outlined text-red-300 text-3xl mb-4 block">bug_report</span>
+      <h3 class="text-lg font-black text-secondary-container mb-3">Technischer Fehler auf jeder Seite</h3>
+      <p class="text-white/60 text-sm leading-relaxed">Der kaputte Code ist auf jeder einzelnen Seite sichtbar — täglich, für jeden Besucher. Wie ein Schaufenster mit Baustellenschild, permanent.</p>
+    </div>
+
+    <div class="bg-white/8 backdrop-blur-md border border-white/10 rounded-3xl p-8 relative hover:-translate-y-1 transition-transform">
+      <span class="text-[80px] font-black text-white/8 absolute top-4 right-6 leading-none select-none">2</span>
+      <span class="material-symbols-outlined text-red-300 text-3xl mb-4 block">shopping_cart_off</span>
+      <h3 class="text-lg font-black text-secondary-container mb-3">Kein Shop = täglicher Umsatzverlust</h3>
+      <p class="text-white/60 text-sm leading-relaxed">Jeder Besucher, der kaufen möchte, verlässt die Website. Die Konkurrenz hat Webshops. LOB schickt Kunden aktiv weiter — 365 Tage im Jahr.</p>
+    </div>
+
+    <div class="bg-white/8 backdrop-blur-md border border-white/10 rounded-3xl p-8 relative hover:-translate-y-1 transition-transform">
+      <span class="text-[80px] font-black text-white/8 absolute top-4 right-6 leading-none select-none">3</span>
+      <span class="material-symbols-outlined text-amber-300 text-3xl mb-4 block">smartphone</span>
+      <h3 class="text-lg font-black text-secondary-container mb-3">60 % der Besucher kommen per Handy</h3>
+      <p class="text-white/60 text-sm leading-relaxed">Keine mobile Navigation, gequetschte Texte, kaputtes Layout. Die Mehrheit aller Besucher hat eine schlechte Erfahrung — und springt sofort ab.</p>
+    </div>
+
+    <div class="bg-white/8 backdrop-blur-md border border-white/10 rounded-3xl p-8 relative hover:-translate-y-1 transition-transform">
+      <span class="text-[80px] font-black text-white/8 absolute top-4 right-6 leading-none select-none">4</span>
+      <span class="material-symbols-outlined text-amber-300 text-3xl mb-4 block">star_off</span>
+      <h3 class="text-lg font-black text-secondary-container mb-3">Null sichtbarer Social Proof</h3>
+      <p class="text-white/60 text-sm leading-relaxed">LOB hat sicher gute Google-Bewertungen und Stammkunden. Aber kein Erstbesucher sieht das. Ohne Beweis = ohne Vertrauen = ohne Kauf.</p>
+    </div>
+
+    <div class="bg-white/8 backdrop-blur-md border border-white/10 rounded-3xl p-8 relative hover:-translate-y-1 transition-transform md:col-span-2 lg:col-span-1">
+      <span class="text-[80px] font-black text-white/8 absolute top-4 right-6 leading-none select-none">5</span>
+      <span class="material-symbols-outlined text-amber-300 text-3xl mb-4 block">calendar_today</span>
+      <h3 class="text-lg font-black text-secondary-container mb-3">Veraltete Inhalte zerstören das Premium-Image</h3>
+      <p class="text-white/60 text-sm leading-relaxed">Black Friday im April, Blog seit 2,5 Jahren still, Autor heißt „Redakteur". Das Signal: hier investiert niemand mehr — und Premium-Kunden kaufen bei Premium-Auftritten.</p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SECTION 04 – PITCH-SÄTZE
+═══════════════════════════════════════════════ -->
+<section id="pitch" class="py-24 bg-surface-container-low">
+<div class="max-w-4xl mx-auto px-8">
+
+  <div class="mb-16 border-l-8 border-secondary pl-8">
+    <p class="text-xs font-black text-secondary tracking-widest uppercase mb-2">04 · Direkt verwendbar</p>
+    <h2 class="text-5xl font-black tracking-tighter text-primary">Pitch-Sätze für das Gespräch</h2>
+    <p class="text-on-surface-variant mt-3">Zeigen Sie den Screenshot — und sagen Sie einen dieser Sätze.</p>
+  </div>
+
+  <div class="space-y-6">
+
+    <div class="bg-white rounded-3xl p-8 shadow-sm border border-outline-variant group hover:border-secondary transition-colors">
+      <div class="flex gap-6 items-start">
+        <span class="text-6xl text-secondary-container font-serif leading-none flex-shrink-0 group-hover:text-secondary transition-colors">"</span>
+        <div>
+          <blockquote class="text-xl font-semibold text-primary leading-relaxed mb-3 italic">
+            Wenn ich Ihre Website auf dem Handy öffne, sehe ich als erstes einen Programmiercode in der Navigation. Das sieht jeder Ihrer Kunden — jeden Tag. Das ist nicht Ihr Fehler, aber es kostet Sie täglich Vertrauen, das Sie sich hart erarbeitet haben.
+          </blockquote>
+          <p class="text-sm text-on-surface-variant">→ <strong>Gesprächseinstieg.</strong> Screenshot zeigen. Direkt, nachweisbar, ohne Vorwurf.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-3xl p-8 shadow-sm border border-outline-variant group hover:border-secondary transition-colors">
+      <div class="flex gap-6 items-start">
+        <span class="text-6xl text-secondary-container font-serif leading-none flex-shrink-0 group-hover:text-secondary transition-colors">"</span>
+        <div>
+          <blockquote class="text-xl font-semibold text-primary leading-relaxed mb-3 italic">
+            Stellen Sie sich vor: Ein Hundebesitzer googelt „Premium Hundefutter Aachen", findet Ihre Seite, klickt auf Sortiment — und kann nicht bestellen. Er wird zu einem anderen Anbieter weitergeleitet und kauft dort. Diesen Kunden verlieren Sie gerade jeden Tag, mehrfach.
+          </blockquote>
+          <p class="text-sm text-on-surface-variant">→ <strong>Emotionale Geschichte.</strong> Macht den täglichen Umsatzverlust greifbar und persönlich.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-3xl p-8 shadow-sm border border-outline-variant group hover:border-secondary transition-colors">
+      <div class="flex gap-6 items-start">
+        <span class="text-6xl text-secondary-container font-serif leading-none flex-shrink-0 group-hover:text-secondary transition-colors">"</span>
+        <div>
+          <blockquote class="text-xl font-semibold text-primary leading-relaxed mb-3 italic">
+            Über 60 % Ihrer Websitebesucher kommen gerade von einem Smartphone. Diese Menschen sehen eine Navigation, die für einen Desktop gemacht ist — auf einem 6-Zoll-Display. Sie scrollen kurz, sind frustriert und schließen die Seite. Das passiert gerade, während wir reden.
+          </blockquote>
+          <p class="text-sm text-on-surface-variant">→ <strong>Statistik + Dringlichkeit.</strong> Ideal für skeptische Gesprächspartner.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-3xl p-8 shadow-sm border border-outline-variant group hover:border-secondary transition-colors">
+      <div class="flex gap-6 items-start">
+        <span class="text-6xl text-secondary-container font-serif leading-none flex-shrink-0 group-hover:text-secondary transition-colors">"</span>
+        <div>
+          <blockquote class="text-xl font-semibold text-primary leading-relaxed mb-3 italic">
+            Ich wette, Sie haben viele treue Stammkunden und gute Google-Bewertungen. Aber ein neuer Kunde, der Ihre Website besucht, sieht davon nichts. Keine Sterne, keine Gesichter, keine Stimmen. Mit Ihren Bewertungen hätten Sie das stärkste Vertrauens-Signal in Aachen — wenn man es auch sehen würde.
+          </blockquote>
+          <p class="text-sm text-on-surface-variant">→ <strong>Wertschätzend + motivierend.</strong> Hebt Stärken hervor, die nur unsichtbar sind.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white rounded-3xl p-8 shadow-sm border border-outline-variant group hover:border-secondary transition-colors">
+      <div class="flex gap-6 items-start">
+        <span class="text-6xl text-secondary-container font-serif leading-none flex-shrink-0 group-hover:text-secondary transition-colors">"</span>
+        <div>
+          <blockquote class="text-xl font-semibold text-primary leading-relaxed mb-3 italic">
+            Auf Ihrer Website steht noch eine Black-Friday-Aktion von November letzten Jahres. Das ist jetzt April. Für einen Erstbesucher sieht das aus, als würde sich niemand mehr kümmern. Dabei ist das nur eine Frage von 5 Minuten Pflege — oder einem System, das das automatisch regelt. Genau das liefern wir.
+          </blockquote>
+          <p class="text-sm text-on-surface-variant">→ <strong>Konkretes Detail + Lösung.</strong> Zeigt Ihr Detailwissen. Schließt mit einer Zusage.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
+<footer class="bg-primary py-12">
+<div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+  <div>
+    <div class="text-xl font-black text-white mb-1">LOB Tiernahrung · Website-Pitch</div>
+    <p class="text-white/40 text-sm">Vertraulich · Erstellt April 2026 · Alle Angaben basieren auf einer Live-Analyse.</p>
+  </div>
+  <div class="text-white/30 text-sm text-right">
+    <p>Design-Vorschlag: stitch/ Ordner</p>
+    <p>Analyse-Dokument: screenshots/ Ordner</p>
+  </div>
+</div>
+</footer>
+
+<script>
+function iframeH(frame) {
+  try { return frame.contentDocument.documentElement.scrollHeight; }
+  catch(e) { return null; }
+}
+
+async function fitFrame(frame) {
+  if (!frame.closest('.tab-content.active') && !frame.closest('.tab-content[style*="block"]')) {
+    const tab = frame.closest('.tab-content');
+    if (tab && !tab.classList.contains('active')) return;
+  }
+
+  frame.style.height = '10000px';
+  try { await frame.contentDocument.fonts.ready; } catch(e) {}
+
+  let prev = 0, stable = 0;
+  const deadline = Date.now() + 6000;
+  while (stable < 4 && Date.now() < deadline) {
+    await new Promise(r => setTimeout(r, 120));
+    const h = iframeH(frame) ?? 0;
+    stable = (h > 200 && h === prev) ? stable + 1 : 0;
+    prev = h;
+  }
+  if (prev > 200) frame.style.height = prev + 'px';
+}
+
+function switchTab(name) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+  const frame = document.querySelector('#tab-' + name + ' .design-frame');
+  if (frame) fitFrame(frame);
+}
+
+document.querySelectorAll('.design-frame').forEach(f =>
+  f.addEventListener('load', () => fitFrame(f))
+);
+
+const ro = new ResizeObserver(() =>
+  document.querySelectorAll('.tab-content.active .design-frame').forEach(f => fitFrame(f))
+);
+document.querySelectorAll('.iframe-wrap').forEach(w => ro.observe(w));
+</script>
+</body>
+</html>
