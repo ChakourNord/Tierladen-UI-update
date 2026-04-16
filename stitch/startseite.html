@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LOB Tiernahrung | Artgerechte Ernährung &amp; Feines Zubehör</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "inverse-surface": "#31302e",
+                    "on-secondary-container": "#715600",
+                    "surface-dim": "#dcdad6",
+                    "on-primary-fixed-variant": "#124c68",
+                    "on-background": "#1c1c1a",
+                    "error": "#ba1a1a",
+                    "surface-bright": "#fcf9f5",
+                    "on-primary-container": "#92c3e5",
+                    "on-error": "#ffffff",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#001e2e",
+                    "on-tertiary-fixed-variant": "#104c69",
+                    "tertiary-fixed": "#c7e7ff",
+                    "inverse-primary": "#9bcdef",
+                    "primary-fixed": "#c7e7ff",
+                    "tertiary-fixed-dim": "#9bcdef",
+                    "primary-fixed-dim": "#9bcdef",
+                    "surface-container-high": "#ebe8e4",
+                    "outline": "#71787e",
+                    "on-tertiary": "#ffffff",
+                    "surface-tint": "#316381",
+                    "surface-variant": "#e5e2de",
+                    "primary-container": "#1a516e",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f3f0ed",
+                    "on-tertiary-fixed": "#001e2e",
+                    "background": "#fcf9f5",
+                    "secondary-fixed-dim": "#f0c040",
+                    "outline-variant": "#c1c7ce",
+                    "primary": "#003a53",
+                    "surface-container-low": "#f6f3ef",
+                    "on-primary": "#ffffff",
+                    "surface": "#fcf9f5",
+                    "on-surface": "#1c1c1a",
+                    "secondary-fixed": "#ffdf98",
+                    "surface-container": "#f0edea",
+                    "on-tertiary-container": "#91c3e5",
+                    "surface-container-highest": "#e5e2de",
+                    "tertiary-container": "#18516f",
+                    "on-secondary-fixed-variant": "#5a4300",
+                    "on-surface-variant": "#41484d",
+                    "secondary-container": "#fdcb4b",
+                    "tertiary": "#003a53",
+                    "on-error-container": "#93000a",
+                    "on-secondary": "#ffffff",
+                    "secondary": "#775a00",
+                    "on-secondary-fixed": "#251a00"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Plus Jakarta Sans"],
+                    "body": ["Plus Jakarta Sans"],
+                    "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .editorial-gradient {
+            background: linear-gradient(135deg, #003a53 0%, #1a516e 100%);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-secondary-container">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#fcf9f5]/80 dark:bg-slate-950/80 backdrop-blur-xl shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
+<div class="text-2xl font-black tracking-tighter text-[#1A516E] dark:text-sky-500">LOB Tiernahrung</div>
+<div class="hidden md:flex items-center space-x-8 font-['Plus_Jakarta_Sans'] font-medium tracking-tight">
+<a class="text-[#1A516E] dark:text-sky-400 border-b-2 border-[#F6C545] pb-1 hover:text-[#1A516E] dark:hover:text-sky-300 transition-colors duration-300" href="#">Sortiment</a>
+<a class="text-[#1A516E]/70 dark:text-slate-400 pb-1 hover:text-[#1A516E] dark:hover:text-sky-300 transition-colors duration-300" href="#">Angebote</a>
+<a class="text-[#1A516E]/70 dark:text-slate-400 pb-1 hover:text-[#1A516E] dark:hover:text-sky-300 transition-colors duration-300" href="#">Blog</a>
+<a class="text-[#1A516E]/70 dark:text-slate-400 pb-1 hover:text-[#1A516E] dark:hover:text-sky-300 transition-colors duration-300" href="#">Über uns</a>
+<a class="text-[#1A516E]/70 dark:text-slate-400 pb-1 hover:text-[#1A516E] dark:hover:text-sky-300 transition-colors duration-300" href="#">Kontakt</a>
+</div>
+<div class="flex items-center space-x-5">
+<button class="p-2 text-[#1A516E] dark:text-sky-400 hover:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="store">store</span>
+</button>
+<button class="p-2 text-[#1A516E] dark:text-sky-400 hover:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative h-[870px] flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Store Atmosphere" class="w-full h-full object-cover" data-alt="Warm sunlit interior of a high-end pet boutique with wooden shelves, artisanal pet treats, and a friendly golden retriever sitting by the counter." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7aZWVqA-qzNNGLv9mBp7Zxr88m2vytMYZCBEMc7sEhZye82UPkb84Y5q_ZQA9Vun80_gQvhk9R_7982TVWEExf8bg118DkRSqes6R7UWTgR8Q9c8J_v-IR-Y5DsnAtL9oiM017Uu4CtRcyVyNNEWM6XgWTjBEsP1tsIRzWAY-AQoGY-zB2V1dBG_j7Z5Cnad2xEuEPR-zT3N4GkidK5GpzZ0FaZjmkbHwRNnA-Noo6PXgVt-IkxNleIF7t9o9Wqkb99f91UOh-w"/>
+<div class="absolute inset-0 bg-primary/30 backdrop-multiply"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-8 w-full">
+<div class="max-w-2xl">
+<span class="inline-flex items-center px-4 py-1 rounded-full bg-secondary-container text-on-secondary-container text-sm font-bold mb-6">
+<span class="w-2 h-2 rounded-full bg-secondary mr-2 animate-pulse"></span>
+                        Geöffnet bis 18:30 in Tiergarten
+                    </span>
+<h1 class="text-6xl md:text-7xl font-black tracking-tighter text-white leading-[0.9] mb-8">
+                        Kuration statt <br/>Konfektion.
+                    </h1>
+<p class="text-xl text-white/90 leading-relaxed font-medium max-w-lg mb-10">
+                        LOB Tiernahrung ist Ihr lokaler Anker für artgerechte Ernährung und feines Zubehör. Besuchen Sie uns für eine persönliche Beratung.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="px-8 py-4 editorial-gradient text-white font-bold rounded-lg shadow-xl hover:scale-105 transition-transform">
+                            Store entdecken
+                        </button>
+<button class="px-8 py-4 bg-white/10 backdrop-blur-md text-white font-bold rounded-lg border border-white/20 hover:bg-white/20 transition-all">
+                            Unser Sortiment
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Current Sales & Offers (Asymmetric Layout) -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex flex-col md:flex-row gap-12 items-end mb-16">
+<div class="md:w-1/2">
+<h2 class="text-5xl font-black tracking-tighter text-primary leading-none mb-6">Exklusive Angebote</h2>
+<p class="text-lg text-on-surface-variant leading-relaxed">
+                            Qualität muss nicht unbezahlbar sein. Entdecken Sie unsere monatlich wechselnden Highlights aus der Region und internationale Premium-Marken.
+                        </p>
+</div>
+<div class="md:w-1/2 flex justify-end">
+<a class="group flex items-center text-primary font-bold text-lg" href="#">
+                            Alle Angebote ansehen
+                            <span class="material-symbols-outlined ml-2 group-hover:translate-x-2 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Big Promo Card -->
+<div class="md:col-span-8 bg-secondary-container rounded-3xl p-12 flex flex-col md:flex-row items-center gap-12 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-8">
+<span class="text-8xl font-black text-on-secondary-container/10 select-none">-25%</span>
+</div>
+<div class="relative z-10 flex-1">
+<h3 class="text-4xl font-extrabold text-on-secondary-container mb-4">Frühlings-Special für Welpen</h3>
+<p class="text-on-secondary-container/80 text-lg mb-8 max-w-md">
+                                Alles für den perfekten Start: 25% Rabatt auf unser Starter-Set bei Abholung im Store.
+                            </p>
+<button class="bg-primary text-white px-6 py-3 rounded-xl font-bold hover:shadow-lg transition-shadow">
+                                Deal sichern
+                            </button>
+</div>
+<div class="md:w-1/3 relative z-10">
+<img alt="Puppy Offer" class="rounded-2xl shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-500" data-alt="A fluffy golden retriever puppy sitting next to a wicker basket filled with premium dog toys and healthy treats in soft natural light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4RZ4t5SSg1bihpvfr9jVFRD8KIsbtMGxKgw7KX7SNWMmerNqFKBS6lJ9-yY7y_XIdN7XpFQ71wwy88Gaf-JElyY5n_55JgSO0mvnDeZttdhp-aywlovgpe3GpxKbEsjEL6x7t0w7rQEmRAnjVDPlhiPVZeIfwZx48jMcmRayOqcKiPoeXmqxE3eprN9s1g43T4yqqerCi6P0nOC-KOfWntlb5STURUSCiUv_8DcEAsl-oqsyongGYSlqDpx9l0gI2KYWnts1Urw"/>
+</div>
+</div>
+<!-- Small Promo Card -->
+<div class="md:col-span-4 bg-surface-container-highest rounded-3xl p-8 flex flex-col justify-between border-b-4 border-secondary">
+<span class="material-symbols-outlined text-secondary text-5xl mb-6" data-icon="loyalty">loyalty</span>
+<div>
+<h3 class="text-2xl font-bold text-primary mb-2">Lokal-Bonus</h3>
+<p class="text-on-surface-variant mb-6">Bringen Sie Ihre eigene Dose mit und sparen Sie 10% auf lose Snacks.</p>
+<a class="text-primary font-bold inline-flex items-center border-b-2 border-primary/20 hover:border-primary transition-all" href="#">Mehr erfahren</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Our Range (Tonal Layering Cards) -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center max-w-3xl mx-auto mb-20">
+<h2 class="text-5xl font-black tracking-tighter text-primary mb-6">Unser Sortiment</h2>
+<p class="text-lg text-on-surface-variant italic">Ausgewählt von Experten, geliebt von Vierbeinern.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Dog Card -->
+<div class="group relative aspect-[4/5] overflow-hidden rounded-3xl bg-surface-container-highest">
+<img alt="Dog range" class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:scale-110 transition-transform duration-700" data-alt="A portrait of a regal Weimaraner dog looking into the distance, outdoor setting with soft bokeh background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdP5BiLD5PyGbZ8PdI3k6DckIbpbIinb_r2Y9Wb__0M1yL_dDos2KS2HWj-JenT9_wiCIHt8XaBM4ZIfIgQ9Pe4y4iStk4St1CZz_xH_OkPdKMMzntFRFK6oVpeu7fq2daaXt5pGVgKWghdkso2iNJ2ZsabzgUrYoAqqm7H75KGB5ZIYKMkhCDEVDt9bDs1Ji21i6ndRKVE7q6gZb_8rhmY9XGoePw0Wm0xeR-n9LrX6BN_awI9GQ4aHdnDrMk4ZGP0MWfj6td4g"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<h3 class="text-3xl font-black text-white mb-2">Hunde</h3>
+<p class="text-white/70 mb-6 line-clamp-2">Von BARF bis High-End Trockenfutter. Wir finden das passende Menü.</p>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs text-white uppercase tracking-widest font-bold">Proteinreich</span>
+<span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs text-white uppercase tracking-widest font-bold">Getreidefrei</span>
+</div>
+</div>
+</div>
+<!-- Cat Card -->
+<div class="group relative aspect-[4/5] overflow-hidden rounded-3xl bg-surface-container-highest">
+<img alt="Cat range" class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:scale-110 transition-transform duration-700" data-alt="Close-up of a beautiful ginger cat with bright green eyes, focus on the eyes and whiskers, soft studio lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuYLnTxKKU1ozyMCX1Oe-F9K91-TwEPm73NB0-mdJY-18PrnFpgBj5nqc4QAqFd-JHrJ_C7jJce314kLi2WVrPV2_HcG5MPZmKed-HOxusr2iAkciTPUaFB4DJ9BgwnEMTPdprXwfXFJB3jWixD_TROheFXq4zUL5drTmomIg3pwf_7ZFiV9nIFSzQn9-Yh--dlKbKbc7ESveFtQd949ESJq8kCLLVSCmw04thRsefqbeieuuc_gseNz-CXor6ptjFm4bYgWc4Ww"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<h3 class="text-3xl font-black text-white mb-2">Katzen</h3>
+<p class="text-white/70 mb-6 line-clamp-2">Feinschmecker-Menüs und artgerechte Beschäftigung für Stubentiger.</p>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs text-white uppercase tracking-widest font-bold">Premium Wet</span>
+<span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs text-white uppercase tracking-widest font-bold">Catnip</span>
+</div>
+</div>
+</div>
+<!-- Specialty Card -->
+<div class="group relative aspect-[4/5] overflow-hidden rounded-3xl bg-surface-container-highest">
+<img alt="Specialty foods" class="absolute inset-0 w-full h-full object-cover grayscale-[20%] group-hover:scale-110 transition-transform duration-700" data-alt="Artisanal glass jars filled with various colorful dried herbs, seeds, and healthy pet food ingredients on a wooden table." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrIT1L-Pw3L1t6vHtHVBOy68SQh7qvNdKGPWN6YCsyx1ivINWpntJmpY21Ef33dMB8i5lMAdMldiUC7pqByWb5l7EWlwmZslb2x8atnHdDS25qzIMJU7lGiS9BdYeXNO7tPh25A78AUPX7loAiTlz8ekdDucy1EAmTf3tBU0GbDFJEXUKb2805n4YBaoLBJ4xLNG70DOExHwoRRKp48hIsqf4K7sHWj3RXFrd4kCLN4Ai-aeItGNBAZKlQBNQ2jcik8L6T3P-QPA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full">
+<h3 class="text-3xl font-black text-white mb-2">Spezialdiäten</h3>
+<p class="text-white/70 mb-6 line-clamp-2">Lösungen für Allergiker und sensible Mägen. Beratung vor Ort.</p>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs text-white uppercase tracking-widest font-bold">Hypoallergen</span>
+<span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-xs text-white uppercase tracking-widest font-bold">Bio</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Editorial Blog Posts -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex items-center justify-between mb-16 border-l-8 border-secondary pl-8">
+<h2 class="text-5xl font-black tracking-tighter text-primary">Das Magazin</h2>
+<span class="text-on-surface-variant font-medium">Wissen für Pfotenfreunde</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+<!-- Featured Article -->
+<article class="flex flex-col gap-8">
+<div class="relative group overflow-hidden rounded-2xl">
+<img alt="Blog cover" class="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-1000" data-alt="A focused border collie performing an agility jump in a green field during golden hour." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBr174mMooA_8Nvbq7EVIIBITHJYpInt8xDUZBVkgc2x9vrNsnP2Qegf6gwSUsUkSxKZI6yCF7cGyr3w7DTl8YZBbu-tj2NPRidaMNHdcT0GVe0QPy7-h2gV0ju76U4V7SizZ1zkb3CGIB7L23z8vBFZn4YU0mTxVOVifLiMMss6iofpat0LXRK500fbHrNmE4Q-wy_EsUACxc5g3nBxMl7-XZPFY3LVvdOayy4K-iBhAHJRTOvL7-epeUDRyiiJe-UBzRq06ukGg"/>
+<div class="absolute top-4 left-4">
+<span class="bg-white px-4 py-2 rounded-lg font-bold text-sm text-primary shadow-lg">Ernährung</span>
+</div>
+</div>
+<div>
+<span class="text-sm font-bold text-secondary tracking-widest uppercase mb-2 block">12. Mai 2024</span>
+<h3 class="text-4xl font-black text-primary leading-tight mb-4 hover:text-primary-container transition-colors cursor-pointer">Barfen leicht gemacht: Der ultimative Guide für Einsteiger</h3>
+<p class="text-on-surface-variant text-lg leading-relaxed mb-6">
+                                Rohes Fleisch, Innereien und Knochen – was gruselig klingt, ist für viele Hunde die natürlichste Form der Ernährung. Wir räumen mit Mythen auf und zeigen, wie der Start gelingt...
+                            </p>
+<a class="inline-flex items-center font-black text-primary group" href="#">
+<span class="border-b-2 border-primary pb-1">Artikel lesen</span>
+<span class="material-symbols-outlined ml-2 group-hover:translate-x-1 transition-transform" data-icon="north_east">north_east</span>
+</a>
+</div>
+</article>
+<!-- Article List -->
+<div class="flex flex-col gap-12">
+<article class="flex gap-6 items-start">
+<div class="w-32 h-32 shrink-0 rounded-xl overflow-hidden bg-surface-container">
+<img alt="Blog thumb" class="w-full h-full object-cover" data-alt="Close-up of high quality dry dog food pellets in a ceramic bowl." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZf_eg6sjGPGbXGtCFuWc7RLqwCKz82qvzfYePHxxHVxZjZPhJ-5uBbcQmuN-uUTOLA26K2lih91OqXc_wki8UK4tqI1rtytamjMHYoqiebeDs87GWfsnlT1uAFh336RWnCxdn789P9hQHQ0-iVYvyqEsn7c7pJq0gskDl7CVSnIjMFzB1R51lbZ77NcjcFJ6t-XEhqXq12qEnXXhlF5R6guL0-iD6L7XYQYNMHRmavaVi8RteFFufCQxLfGV5dwMJ5zOCbCOstQ"/>
+</div>
+<div>
+<span class="text-xs font-bold text-on-surface-variant/60 tracking-widest uppercase mb-1 block">Tipps</span>
+<h4 class="text-xl font-extrabold text-primary mb-2 leading-snug cursor-pointer hover:text-secondary transition-colors">Sommer-Check: Hydration für aktive Hunde</h4>
+<p class="text-on-surface-variant text-sm line-clamp-2">Wie viel Wasser braucht Ihr Hund wirklich bei Hitze? Erfahren Sie praktische Tricks für unterwegs.</p>
+</div>
+</article>
+<article class="flex gap-6 items-start">
+<div class="w-32 h-32 shrink-0 rounded-xl overflow-hidden bg-surface-container">
+<img alt="Blog thumb" class="w-full h-full object-cover" data-alt="A curious ginger cat exploring a wooden shelf filled with indoor plants." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoubYUsX6l3VoL2LM1ZlqSmDnX-PrHhxmqYN1NXqBvfszq2Y_jxUYATQ6ghUQPyyIEQnHt2Ubw_Hv81bNKZ4BS3akGWW6YoYwIEsVcNjw148fulMBj3wi89W4nNrbwK1Co2ozvi_SLWDlXRZVyBSW1GuJEyCLWoATGqos7vdzYzkWh5boHkdAkD2Jur3LU1unXiZITEnpb3i6siVnubu6uLs_qdQXHLUAUNm3S47eHeBby3_AwoZKJpUpvn43gB3T2esRHv4SQSA"/>
+</div>
+<div>
+<span class="text-xs font-bold text-on-surface-variant/60 tracking-widest uppercase mb-1 block">Wissen</span>
+<h4 class="text-xl font-extrabold text-primary mb-2 leading-snug cursor-pointer hover:text-secondary transition-colors">Giftige Zimmerpflanzen für Katzen: Eine Übersicht</h4>
+<p class="text-on-surface-variant text-sm line-clamp-2">Sorgen Sie für ein sicheres Zuhause. Diese beliebten Pflanzen sollten Sie besser vermeiden.</p>
+</div>
+</article>
+<article class="flex gap-6 items-start">
+<div class="w-32 h-32 shrink-0 rounded-xl overflow-hidden bg-surface-container">
+<img alt="Blog thumb" class="w-full h-full object-cover" data-alt="An assortment of colorful braided dog leashes and collars hanging in a boutique." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAh9s00cpmiTtEfAav94wHI8cb3MDfoqmKe_NWQLJ5f3bJNpohulDi_bL3cjzvOdMMcU3iEtgz55LBRmXeS1ldRJkd7v4ThxQR7qJdgpl82T1yfpNsekKOPESN-F29degw-HcNiXb1reiMJFBPRrX2A3g2lFNd7SPqPjgcptsjFuw4BfSBVGAT4I1Ux8NGmrBBTDAohwyfSl8WOpxiRB2110DNT7M0fgFv7olkNSrhimSd1t7qho94jlOqEB_65GL_jlDcGoCrrBg"/>
+</div>
+<div>
+<span class="text-xs font-bold text-on-surface-variant/60 tracking-widest uppercase mb-1 block">Lifestyle</span>
+<h4 class="text-xl font-extrabold text-primary mb-2 leading-snug cursor-pointer hover:text-secondary transition-colors">Nachhaltiges Zubehör: Hanf &amp; Kork im Trend</h4>
+<p class="text-on-surface-variant text-sm line-clamp-2">Warum ökologische Materialien nicht nur gut für die Umwelt, sondern auch für die Tierhaut sind.</p>
+</div>
+</article>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust / Store Vibe Section -->
+<section class="py-24 bg-primary-container text-white overflow-hidden">
+<div class="max-w-7xl mx-auto px-8 relative">
+<div class="absolute top-0 right-0 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[20rem]" data-icon="pets">pets</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div>
+<h2 class="text-5xl font-black tracking-tighter mb-8 leading-[0.9]">Mehr als nur ein <br/>Fachgeschäft.</h2>
+<div class="space-y-8">
+<div class="flex gap-6">
+<div class="bg-white/10 p-3 rounded-xl h-fit">
+<span class="material-symbols-outlined text-secondary" data-icon="verified">verified</span>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-2">Geprüfte Qualität</h4>
+<p class="text-white/70 leading-relaxed">Wir führen ausschließlich Marken, deren Inhaltsstoffe wir persönlich geprüft und für exzellent befunden haben.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="bg-white/10 p-3 rounded-xl h-fit">
+<span class="material-symbols-outlined text-secondary" data-icon="local_shipping">local_shipping</span>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-2">Lieferservice</h4>
+<p class="text-white/70 leading-relaxed">Keine Zeit für den Store-Besuch? Im Umkreis von 10km liefern wir schwere Säcke direkt bis an Ihre Haustür.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="bg-white/10 p-3 rounded-xl h-fit">
+<span class="material-symbols-outlined text-secondary" data-icon="groups">groups</span>
+</div>
+<div>
+<h4 class="text-xl font-bold mb-2">Community Events</h4>
+<p class="text-white/70 leading-relaxed">Regelmäßige Info-Abende zu Erziehungs- und Ernährungsfragen in unserem Store.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -inset-4 bg-secondary rounded-[3rem] -rotate-3 scale-95 opacity-50"></div>
+<div class="relative bg-surface rounded-[2.5rem] p-4 shadow-2xl">
+<img alt="Store Interior" class="rounded-[2rem] w-full" data-alt="Interior of LOB Tiernahrung store with neat displays of colorful pet food bags and a smiling staff member assisting a customer with a dog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMpLKnZBDB1Y1NPBTO3tdHDBssoe6k2zBgZwFjBaNzXUKPc1YirUlDyy5XyRcMqCrbr6nmQ6uQ9EHwYm-MeTDFncpFnVnv4JM83rhvMn3WpjMn03Vz5QnyM_EbbgzvKopj4vRqU5bmbooj6G8FHHQ2F7HiM7BbB_Tl5dAYIfGSZQ-e_3-PACqQ18bJUcTuIPXnp-nzCW4TB9hB4jVRuNIKSC0pQxflUsuJajTEc7SAbeWZMMiJdsJbTHV37MIpHgCdkeIOCRLUnQ"/>
+<div class="absolute -bottom-6 -right-6 bg-secondary text-primary font-black px-8 py-6 rounded-2xl shadow-xl transform hover:scale-110 transition-transform">
+<p class="text-xs uppercase tracking-widest mb-1 opacity-70">Besuchen Sie uns</p>
+<p class="text-xl">Hauptstraße 42, Berlin</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-100 dark:bg-slate-900 w-full py-16">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto px-8">
+<div class="flex flex-col gap-6">
+<div class="text-xl font-bold text-[#1A516E] dark:text-sky-500">LOB Tiernahrung</div>
+<p class="text-slate-600 dark:text-slate-400 font-['Plus_Jakarta_Sans'] leading-relaxed">
+                    Ihr Partner für erstklassige Tiernahrung und fundierte Beratung im Herzen der Stadt.
+                </p>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="alternate_email">alternate_email</span>
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="share">share</span>
+</div>
+</div>
+<div>
+<h5 class="font-bold text-[#1A516E] mb-6">Sortiment</h5>
+<ul class="space-y-3 text-slate-600 dark:text-slate-400">
+<li><a class="hover:text-[#F6C545] transition-colors" href="#">Hundefutter</a></li>
+<li><a class="hover:text-[#F6C545] transition-colors" href="#">Katzenfutter</a></li>
+<li><a class="hover:text-[#F6C545] transition-colors" href="#">Nahrungsergänzung</a></li>
+<li><a class="hover:text-[#F6C545] transition-colors" href="#">Zubehör</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-[#1A516E] mb-6">Unternehmen</h5>
+<ul class="space-y-3 text-slate-600 dark:text-slate-400">
+<li><a class="hover:text-[#F6C545] transition-colors" href="#">Impressum</a></li>
+<li><a class="hover:text-[#F6C545] transition-colors" href="#">Datenschutz</a></li>
+<li><a class="hover:text-[#F6C545] transition-colors" href="#">AGB</a></li>
+<li><a class="hover:text-[#F6C545] transition-colors" href="#">Standorte</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold text-[#1A516E] mb-6">Newsletter</h5>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Erhalten Sie monatliche Pfoten-Tipps und exklusive Store-Angebote.</p>
+<div class="flex gap-2">
+<input class="bg-white border-none rounded-lg px-4 py-2 w-full focus:ring-2 focus:ring-secondary outline-none" placeholder="E-Mail Adresse" type="email"/>
+<button class="bg-secondary text-on-secondary-container p-2 rounded-lg">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-600 dark:text-slate-400 text-sm">© 2024 LOB Tiernahrung. All rights reserved.</p>
+<div class="flex gap-6 text-sm font-semibold text-[#F6C545]">
+<a class="hover:underline" href="#">Facebook</a>
+<a class="hover:underline" href="#">Instagram</a>
+<a class="hover:underline" href="#">LinkedIn</a>
+</div>
+</div>
+</footer>
+</body></html>
