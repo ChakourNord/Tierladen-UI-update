@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website-Schwachstellenanalyse – lob-tiernahrung.de</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f4f6f9;
+    color: #1a1a2e;
+    line-height: 1.6;
+  }
+
+  /* ===== COVER ===== */
+  .cover {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+    color: white;
+    padding: 80px 60px;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .cover .badge {
+    display: inline-block;
+    background: #e94560;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+  }
+  .cover h1 {
+    font-size: 38px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .cover h1 span { color: #f5a623; }
+  .cover .subtitle {
+    font-size: 16px;
+    color: #a0aec0;
+    margin-bottom: 30px;
+  }
+  .cover .meta {
+    display: flex;
+    gap: 40px;
+    font-size: 13px;
+    color: #718096;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
+    margin-top: 20px;
+  }
+  .cover .meta strong { color: #e2e8f0; display: block; font-size: 15px; }
+
+  /* ===== SUMMARY BOXES ===== */
+  .summary-bar {
+    background: white;
+    padding: 30px 60px;
+    display: flex;
+    gap: 20px;
+    border-bottom: 3px solid #f0f0f0;
+    flex-wrap: wrap;
+  }
+  .summary-box {
+    flex: 1;
+    min-width: 180px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 12px;
+  }
+  .summary-box.red { background: #fff5f5; border: 2px solid #fed7d7; }
+  .summary-box.orange { background: #fffaf0; border: 2px solid #fbd38d; }
+  .summary-box.green { background: #f0fff4; border: 2px solid #9ae6b4; }
+  .summary-box .number {
+    font-size: 42px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .summary-box.red .number { color: #e53e3e; }
+  .summary-box.orange .number { color: #dd6b20; }
+  .summary-box.green .number { color: #38a169; }
+  .summary-box .label { font-size: 12px; font-weight: 600; color: #666; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* ===== CONTENT LAYOUT ===== */
+  .container { max-width: 1100px; margin: 0 auto; padding: 50px 40px; }
+
+  /* ===== SECTION HEADER ===== */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 30px;
+    margin-top: 50px;
+  }
+  .section-header .icon {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .icon-red { background: #fff5f5; }
+  .icon-orange { background: #fffaf0; }
+  .icon-blue { background: #ebf8ff; }
+  .section-header h2 { font-size: 22px; font-weight: 700; color: #1a1a2e; }
+  .section-header p { font-size: 13px; color: #888; margin-top: 2px; }
+
+  /* ===== PROBLEM CARDS ===== */
+  .problem-card {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    border-left: 5px solid #e53e3e;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+  .problem-card.warning { border-left-color: #dd6b20; }
+  .problem-card.info { border-left-color: #3182ce; }
+  .problem-card.critical {
+    border-left-color: #c53030;
+    background: linear-gradient(135deg, #fff5f5, #ffffffff);
+  }
+  .problem-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: #e53e3e;
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .problem-card.warning .problem-number { background: #dd6b20; }
+  .problem-card.info .problem-number { background: #3182ce; }
+  .problem-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+  }
+  .problem-desc {
+    font-size: 14px;
+    color: #4a5568;
+    margin-bottom: 16px;
+    line-height: 1.6;
+  }
+  .tag-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+  .tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tag-red { background: #fff5f5; color: #c53030; border: 1px solid #fed7d7; }
+  .tag-orange { background: #fffaf0; color: #c05621; border: 1px solid #fbd38d; }
+  .tag-blue { background: #ebf8ff; color: #2b6cb0; border: 1px solid #bee3f8; }
+  .tag-gray { background: #f7fafc; color: #4a5568; border: 1px solid #e2e8f0; }
+
+  .impact-box {
+    background: #fff5f5;
+    border: 1px solid #fed7d7;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 4px;
+  }
+  .impact-box.orange-box {
+    background: #fffaf0;
+    border-color: #fbd38d;
+  }
+  .impact-box.blue-box {
+    background: #ebf8ff;
+    border-color: #bee3f8;
+  }
+  .impact-box .impact-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #c53030;
+    margin-bottom: 4px;
+  }
+  .impact-box.orange-box .impact-label { color: #c05621; }
+  .impact-box.blue-box .impact-label { color: #2b6cb0; }
+  .impact-box p { font-size: 13px; color: #4a5568; line-height: 1.5; }
+
+  .fix-box {
+    background: #f0fff4;
+    border: 1px solid #9ae6b4;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 10px;
+  }
+  .fix-box .fix-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #276749;
+    margin-bottom: 4px;
+  }
+  .fix-box p { font-size: 13px; color: #276749; line-height: 1.5; }
+
+  /* ===== SCREENSHOT PLACEHOLDER ===== */
+  .screenshot-area {
+    background: #f7fafc;
+    border: 2px dashed #cbd5e0;
+    border-radius: 12px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .screenshot-area .url-badge {
+    background: #2d3748;
+    color: #a0aec0;
+    font-size: 11px;
+    font-family: monospace;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+  }
+  .screenshot-area .visual-mock {
+    width: 100%;
+    background: white;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+  }
+  /* Mockup nav bar */
+  .mock-nav {
+    background: #1a3a5c;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 11px;
+    color: white;
+  }
+  .mock-nav .logo-dot { width: 24px; height: 24px; border-radius: 50%; background: white; opacity: 0.9; }
+  .mock-nav .nav-links { display: flex; gap: 10px; font-size: 10px; color: rgba(255,255,255,0.7); }
+  .mock-error-badge {
+    background: #e53e3e;
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-left: auto;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.6} }
+  .mock-content { padding: 16px; }
+  .mock-row { height: 10px; background: #e2e8f0; border-radius: 4px; margin-bottom: 8px; }
+  .mock-row.short { width: 60%; }
+  .mock-row.medium { width: 80%; }
+  .mock-row.error { background: #fc8181; width: 90%; }
+  .screenshot-annotation {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #e53e3e;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(229,62,62,0.4);
+  }
+  .screenshot-annotation.warn { background: #dd6b20; box-shadow: 0 2px 6px rgba(221,107,32,0.4); }
+
+  /* ===== TOP 5 SECTION ===== */
+  .top5-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+    border-radius: 20px;
+    padding: 50px;
+    margin-top: 60px;
+    color: white;
+  }
+  .top5-section h2 {
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 8px;
+    color: #f5a623;
+  }
+  .top5-section .subtitle {
+    color: #a0aec0;
+    font-size: 14px;
+    margin-bottom: 36px;
+  }
+  .top5-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .top5-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 24px;
+    position: relative;
+    transition: transform 0.2s;
+  }
+  .top5-card:hover { transform: translateY(-2px); }
+  .top5-card .rank {
+    font-size: 48px;
+    font-weight: 900;
+    color: rgba(245,166,35,0.2);
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    line-height: 1;
+  }
+  .top5-card h3 { font-size: 15px; font-weight: 700; color: #f5a623; margin-bottom: 8px; }
+  .top5-card p { font-size: 13px; color: #a0aec0; line-height: 1.6; }
+
+  /* ===== SALES LINES ===== */
+  .sales-section {
+    background: white;
+    border-radius: 20px;
+    padding: 50px;
+    margin-top: 30px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  }
+  .sales-section h2 { font-size: 24px; font-weight: 800; color: #1a1a2e; margin-bottom: 6px; }
+  .sales-section .subtitle { color: #888; font-size: 14px; margin-bottom: 32px; }
+  .sales-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .sales-line:last-child { border-bottom: none; }
+  .sales-line .quote-mark {
+    font-size: 36px;
+    color: #f5a623;
+    line-height: 1;
+    flex-shrink: 0;
+    font-family: Georgia, serif;
+  }
+  .sales-line blockquote {
+    font-size: 16px;
+    font-style: italic;
+    color: #1a1a2e;
+    font-weight: 500;
+    line-height: 1.6;
+    margin-bottom: 6px;
+  }
+  .sales-line .context {
+    font-size: 12px;
+    color: #888;
+  }
+
+  /* ===== FOOTER ===== */
+  .doc-footer {
+    background: #1a1a2e;
+    color: #718096;
+    text-align: center;
+    padding: 30px;
+    font-size: 12px;
+    margin-top: 60px;
+  }
+  .doc-footer strong { color: #a0aec0; }
+
+  /* ===== PROBLEM FULL WIDTH ===== */
+  .problem-card.full-width {
+    grid-template-columns: 1fr;
+  }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  /* ===== CRITICAL BANNER ===== */
+  .critical-banner {
+    background: #c53030;
+    color: white;
+    border-radius: 12px;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .critical-banner .icon-big { font-size: 28px; }
+  .critical-banner strong { display: block; font-size: 15px; margin-bottom: 3px; }
+  .critical-banner span { font-size: 13px; opacity: 0.85; }
+
+  @media (max-width: 768px) {
+    .problem-card { grid-template-columns: 1fr; }
+    .top5-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .cover { padding: 40px 24px; }
+    .container { padding: 30px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <span class="badge">🔍 Vertrauliche Analyse · April 2026</span>
+  <h1>Website-Schwachstellenanalyse<br><span>lob-tiernahrung.de</span></h1>
+  <p class="subtitle">Professionelle UX-, Conversion- und Technikanalyse für das Erstgespräch</p>
+  <div class="meta">
+    <div><strong>Analysiert</strong>lob-tiernahrung.de</div>
+    <div><strong>Datum</strong>April 2026</div>
+    <div><strong>Gefundene Probleme</strong>9 kritische Punkte</div>
+    <div><strong>Gesamtbewertung</strong>⚠️ Handlungsbedarf</div>
+  </div>
+</div>
+
+<!-- ===== SUMMARY BOXES ===== -->
+<div class="summary-bar">
+  <div class="summary-box red">
+    <div class="number">3</div>
+    <div class="label">Kritische Fehler</div>
+  </div>
+  <div class="summary-box orange">
+    <div class="number">4</div>
+    <div class="label">Conversion-Probleme</div>
+  </div>
+  <div class="summary-box orange">
+    <div class="number">2</div>
+    <div class="label">Vertrauensprobleme</div>
+  </div>
+  <div class="summary-box red">
+    <div class="number">0</div>
+    <div class="label">Echter Online-Shop</div>
+  </div>
+  <div class="summary-box green">
+    <div class="number">∞</div>
+    <div class="label">Umsatzpotenzial</div>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="container">
+
+  <!-- SECTION: TECHNISCHE FEHLER -->
+  <div class="section-header">
+    <div class="icon icon-red">🔴</div>
+    <div>
+      <h2>Kritische Technische Fehler</h2>
+      <p>Sichtbare Defekte, die sofortige Reaktion erfordern</p>
+    </div>
+  </div>
+
+  <!-- PROBLEM 1 -->
+  <div class="critical-banner">
+    <span class="icon-big">💀</span>
+    <div>
+      <strong>DEFEKT AUF JEDER SEITE SICHTBAR: Kaputtes Plugin-Shortcode in der Navigation</strong>
+      <span>Der rohe WordPress-Code <code>[ivory-search id="650" title="AJAX Search Form"]</code> wird auf JEDER Seite sichtbar für alle Besucher angezeigt.</span>
+    </div>
+  </div>
+
+  <div class="problem-card critical">
+    <div>
+      <div class="problem-number">1</div>
+      <div class="tag-row">
+        <span class="tag tag-red">Kritisch</span>
+        <span class="tag tag-gray">Technisch</span>
+        <span class="tag tag-gray">Alle Seiten betroffen</span>
+      </div>
+      <div class="problem-title">❌ Broken Plugin-Code in der Navigation</div>
+      <div class="problem-desc">
+        In der Navigationsleiste steht auf jeder einzelnen Seite sichtbar für alle Besucher der rohe WordPress-Shortcode:
+        <code style="background:#f7fafc; padding:2px 6px; border-radius:4px; color:#e53e3e; font-size:12px;">[ivory-search id="650" title="AJAX Search Form"]</code>.
+        Das bedeutet: Das Plugin ist entweder deinstalliert oder defekt — der Platzhalter-Code wurde nie entfernt.
+      </div>
+      <div class="impact-box">
+        <div class="impact-label">💥 Business-Auswirkung</div>
+        <p>Ein Laie denkt: „Die Seite ist kaputt." Ein potenzieller Stammkunde verlässt sofort die Website. Das ist wie ein Schaufenster mit einem Baustellenschild — jeden Tag, für jeden Besucher.</p>
+      </div>
+      <div class="fix-box">
+        <div class="fix-label">✅ Lösung</div>
+        <p>Plugin reparieren oder Shortcode aus dem Elementor-Template entfernen. Dauert 10 Minuten — kostet aber momentan täglich Kunden.</p>
+      </div>
+    </div>
+    <div class="screenshot-area">
+      <span class="screenshot-annotation">❌ Fehler sichtbar</span>
+      <div class="url-badge">lob-tiernahrung.de → Navigation oben rechts</div>
+      <div class="visual-mock">
+        <div class="mock-nav">
+          <div class="logo-dot"></div>
+          <div class="nav-links">
+            <span>HOME</span><span>ÜBER UNS</span><span>SORTIMENT</span>
+            <span style="color:#fc8181; font-weight:bold;">[ivory-search id="650"...]</span>
+          </div>
+          <div class="mock-error-badge">BUG</div>
+        </div>
+        <div class="mock-content">
+          <div class="mock-row error"></div>
+          <div class="mock-row short"></div>
+          <div class="mock-row medium"></div>
+        </div>
+      </div>
+      <p style="font-size:12px; color:#e53e3e; margin-top:12px; font-weight:600;">⚠️ Dieser Fehler erscheint auf JEDER Seite der Website</p>
+    </div>
+  </div>
+
+  <!-- PROBLEM 2 -->
+  <div class="problem-card critical">
+    <div>
+      <div class="problem-number">2</div>
+      <div class="tag-row">
+        <span class="tag tag-red">Kritisch</span>
+        <span class="tag tag-gray">Conversion</span>
+        <span class="tag tag-gray">Umsatz</span>
+      </div>
+      <div class="problem-title">❌ Kein echter Online-Shop – nur Affiliate-Links</div>
+      <div class="problem-desc">
+        Die Seite „Sortiment" zeigt keine eigenen Produkte mit Warenkorb und Kauf-Funktion. Stattdessen steht dort explizit: <em>„Bestellbare Affiliate Produkte"</em>. Kunden werden zu Drittanbieter-Shops weitergeleitet — LOB verdient dabei maximal eine kleine Provision, verliert aber den direkten Kunden dauerhaft.
+      </div>
+      <div class="impact-box">
+        <div class="impact-label">💥 Business-Auswirkung</div>
+        <p>Jeder Klick auf ein Produkt verlässt die Website. Es gibt keine Warenkörbe, keine E-Mail-Adressen, keine Kundenbindung. Der gesamte Online-Umsatz geht an Dritte. Das ist bares Geld, das täglich verloren geht.</p>
+      </div>
+      <div class="fix-box">
+        <div class="fix-label">✅ Lösung</div>
+        <p>Eigener WooCommerce-Shop mit direktem Checkout, Kundenkonto, Newsletter-Opt-in und Retargeting-Möglichkeiten. Kundenbindung statt Weiterleitungen.</p>
+      </div>
+    </div>
+    <div class="screenshot-area">
+      <span class="screenshot-annotation">❌ Kein Shop</span>
+      <div class="url-badge">lob-tiernahrung.de/sortiment/</div>
+      <div class="visual-mock">
+        <div style="background:#f5a623; padding:12px 16px; text-align:center; font-weight:700; color:white; font-size:12px;">SORTIMENT – Produkte</div>
+        <div style="padding:16px;">
+          <div style="background:#fff3cd; border:1px solid #ffc107; border-radius:6px; padding:10px; font-size:12px; color:#856404; margin-bottom:12px; text-align:center;">
+            ⚠️ „Bestellbare <strong>Affiliate</strong> Produkte" – kein echter Kauf möglich
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
+            <div style="border:1px solid #e2e8f0; border-radius:8px; padding:10px; text-align:center;">
+              <div style="height:40px; background:#f0f0f0; border-radius:4px; margin-bottom:6px;"></div>
+              <div style="font-size:10px; color:#666;">Produkt A</div>
+              <div style="font-size:9px; color:#e53e3e; margin-top:4px;">→ Weiterleitung</div>
+            </div>
+            <div style="border:1px solid #e2e8f0; border-radius:8px; padding:10px; text-align:center;">
+              <div style="height:40px; background:#f0f0f0; border-radius:4px; margin-bottom:6px;"></div>
+              <div style="font-size:10px; color:#666;">Produkt B</div>
+              <div style="font-size:9px; color:#e53e3e; margin-top:4px;">→ Weiterleitung</div>
+            </div>
+            <div style="border:1px solid #e2e8f0; border-radius:8px; padding:10px; text-align:center;">
+              <div style="height:40px; background:#f0f0f0; border-radius:4px; margin-bottom:6px;"></div>
+              <div style="font-size:10px; color:#666;">Produkt C</div>
+              <div style="font-size:9px; color:#e53e3e; margin-top:4px;">→ Weiterleitung</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 3 -->
+  <div class="problem-card warning">
+    <div>
+      <div class="problem-number" style="background:#dd6b20;">3</div>
+      <div class="tag-row">
+        <span class="tag tag-orange">Veralteter Inhalt</span>
+        <span class="tag tag-gray">Vertrauensverlust</span>
+      </div>
+      <div class="problem-title">⚠️ Veraltete Saisonaktion – „Black Deals" im April 2026</div>
+      <div class="problem-desc">
+        Im Angebotsbereich der Startseite wird noch immer eine <strong>Black Friday / Black Deals</strong>-Aktion beworben: <em>„Jetzt Black Deals bei noms+ sichern"</em>. Black Friday war im November. Diese Aktion ist mindestens 5 Monate veraltet und wurde nie aktualisiert.
+      </div>
+      <div class="impact-box orange-box">
+        <div class="impact-label">💥 Business-Auswirkung</div>
+        <p>Besucher sehen: „Die kümmern sich nicht um ihre Website." Ein veraltetes Angebot zerstört Vertrauen sofort — es signalisiert Nachlässigkeit und fehlende Professionalität.</p>
+      </div>
+      <div class="fix-box">
+        <div class="fix-label">✅ Lösung</div>
+        <p>Aktuelle Aktionen mit Gültigkeitsdatum. Saisonale Angebote automatisch ablaufen lassen. Ein gepflegter Angebotsbereich steigert die Conversion erheblich.</p>
+      </div>
+    </div>
+    <div class="screenshot-area">
+      <span class="screenshot-annotation warn">⚠️ 5 Monate veraltet</span>
+      <div class="url-badge">lob-tiernahrung.de → Angebote-Sektion</div>
+      <div class="visual-mock">
+        <div style="background:#f5a623; padding:20px; text-align:center;">
+          <div style="background:white; display:inline-block; border-radius:8px; padding:8px 16px; font-weight:700; font-size:13px; color:#f5a623; margin-bottom:10px;">Futter-Deals</div>
+          <div style="color:white; font-size:14px; font-weight:700;">Jetzt Black Deals bei noms+ sichern</div>
+          <div style="color:rgba(255,255,255,0.8); font-size:11px; margin-top:4px;">Per WhatsApp anmelden und sparen.</div>
+        </div>
+        <div style="background:#fff3cd; padding:10px 16px; text-align:center; font-size:11px; color:#856404; font-weight:600;">
+          🗓️ Black Friday war im November 2025 — das ist April 2026!
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: CONVERSION PROBLEME -->
+  <div class="section-header" style="margin-top: 60px;">
+    <div class="icon icon-orange">🟠</div>
+    <div>
+      <h2>Conversion- &amp; UX-Probleme</h2>
+      <p>Fehlende Elemente, die Besucher aktiv vom Kaufen abhalten</p>
+    </div>
+  </div>
+
+  <!-- PROBLEM 4 -->
+  <div class="problem-card warning">
+    <div>
+      <div class="problem-number" style="background:#dd6b20;">4</div>
+      <div class="tag-row">
+        <span class="tag tag-orange">Kein CTA</span>
+        <span class="tag tag-gray">Hero-Section</span>
+        <span class="tag tag-orange">Conversion</span>
+      </div>
+      <div class="problem-title">⚠️ Kein Handlungsaufruf im Hero – Besucher stehen ratlos da</div>
+      <div class="problem-desc">
+        Die erste Sache, die ein Besucher sieht, ist das animierte Wort „WEDELN / WIEHERN / ZWITSCHERN" — aber kein einziger klarer Button wie <em>„Jetzt beraten lassen"</em>, <em>„Angebote entdecken"</em> oder <em>„Zum Sortiment"</em>. Die Hero-Section ist dekorativ, nicht verkaufsorientiert.
+      </div>
+      <div class="impact-box orange-box">
+        <div class="impact-label">💥 Business-Auswirkung</div>
+        <p>Studien zeigen: 70 % der Besucher verlassen eine Website innerhalb von 10 Sekunden, wenn kein klarer Handlungsaufruf vorhanden ist. Jeder Besucher ohne CTA = verlorener potenzieller Kunde.</p>
+      </div>
+      <div class="fix-box">
+        <div class="fix-label">✅ Lösung</div>
+        <p>Prominent platzierter CTA-Button mit konkretem Nutzen: „Jetzt Futter finden → " oder „Kostenlose Beratung buchen". A/B-testen für maximale Conversion.</p>
+      </div>
+    </div>
+    <div class="screenshot-area">
+      <span class="screenshot-annotation warn">⚠️ Kein CTA-Button</span>
+      <div class="url-badge">lob-tiernahrung.de → Hero-Section</div>
+      <div class="visual-mock">
+        <div style="background:#1a3a5c; padding:30px 20px; text-align:center; position:relative;">
+          <div style="font-size:18px; color:white; font-weight:700; margin-bottom:6px;">Für mehr <span style="color:#f5a623; font-style:italic;">WEDELN</span></div>
+          <div style="font-size:12px; color:rgba(255,255,255,0.6); margin-bottom:20px;">Verwöhn-Produkte für Fellnasen</div>
+          <div style="border:2px dashed rgba(255,59,48,0.6); border-radius:8px; padding:12px; color:rgba(255,59,48,0.8); font-size:11px; font-weight:600;">
+            ❌ Hier fehlt ein CTA-Button!<br>
+            <span style="font-size:10px; opacity:0.8;">z.B. „Jetzt Sortiment entdecken →"</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 5 -->
+  <div class="problem-card warning">
+    <div>
+      <div class="problem-number" style="background:#dd6b20;">5</div>
+      <div class="tag-row">
+        <span class="tag tag-orange">Mobile</span>
+        <span class="tag tag-gray">Responsive</span>
+        <span class="tag tag-red">UX</span>
+      </div>
+      <div class="problem-title">⚠️ Kein mobiles Menü – Desktop-Navigation auf Smartphones</div>
+      <div class="problem-desc">
+        Bei mobiler Ansicht (Smartphone) bleibt die vollständige Desktop-Navigation bestehen — kein Hamburger-Menü, keine vereinfachte mobile Ansicht. Auf einem 390px-Display sind alle Navigationspunkte gleichzeitig sichtbar und nicht bedienbar.
+      </div>
+      <div class="impact-box orange-box">
+        <div class="impact-label">💥 Business-Auswirkung</div>
+        <p>Über 60 % des Traffics kommt heute von Smartphones. Wer auf Mobile eine kaputte Navigation hat, verliert täglich die Hälfte seiner potenziellen Kunden. Google bewertet Mobile-Tauglichkeit auch im Ranking.</p>
+      </div>
+      <div class="fix-box">
+        <div class="fix-label">✅ Lösung</div>
+        <p>Responsive Navigation mit Hamburger-Menü, Touch-optimierten Buttons und korrekten Schriftgrößen für alle Geräteklassen.</p>
+      </div>
+    </div>
+    <div class="screenshot-area">
+      <span class="screenshot-annotation warn">⚠️ Mobile-Problem</span>
+      <div class="url-badge">lob-tiernahrung.de → Mobile 390px</div>
+      <div class="visual-mock">
+        <div style="background:#1a3a5c; padding:6px 10px; display:flex; align-items:center; gap:6px; overflow:hidden;">
+          <div style="width:20px; height:20px; border-radius:50%; background:white; opacity:0.8; flex-shrink:0;"></div>
+          <div style="display:flex; gap:4px; font-size:7px; color:rgba(255,255,255,0.7); overflow:hidden; flex-wrap:nowrap;">
+            <span style="white-space:nowrap;">HOME</span>
+            <span style="white-space:nowrap;">ÜBER</span>
+            <span style="white-space:nowrap;">BLOG</span>
+            <span style="white-space:nowrap; color:#fc8181;">SORT...</span>
+            <span style="white-space:nowrap;">SALE</span>
+            <span style="white-space:nowrap; color:#fc8181; overflow:hidden;">[ivory...</span>
+          </div>
+        </div>
+        <div style="padding:12px; font-size:10px; color:#e53e3e; background:#fff5f5; border-top:1px solid #fed7d7; text-align:center; font-weight:600;">
+          ❌ Alles gequetscht, kein Hamburger-Menü
+        </div>
+        <div style="padding:12px;">
+          <div style="height:60px; background:#1a3a5c; border-radius:6px; margin-bottom:8px;"></div>
+          <div style="height:8px; background:#e2e8f0; border-radius:4px; margin-bottom:6px;"></div>
+          <div style="height:8px; background:#e2e8f0; border-radius:4px; width:70%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 6 -->
+  <div class="problem-card warning">
+    <div>
+      <div class="problem-number" style="background:#dd6b20;">6</div>
+      <div class="tag-row">
+        <span class="tag tag-orange">UX</span>
+        <span class="tag tag-gray">Layout</span>
+        <span class="tag tag-gray">Ladezeit-Wahrnehmung</span>
+      </div>
+      <div class="problem-title">⚠️ Massiver Leerraum auf mehreren Seiten</div>
+      <div class="problem-desc">
+        Auf der Startseite, der Sortiment-Seite und der Sale-Seite gibt es riesige leere weiße Flächen von mehreren hundert Pixeln. Diese entstehen durch fehlerhafte Abstände oder nicht geladene Inhalte. Besucher denken, die Seite ist defekt oder lädt noch.
+      </div>
+      <div class="impact-box orange-box">
+        <div class="impact-label">💥 Business-Auswirkung</div>
+        <p>Absprungrate steigt massiv. Nutzer scrollen nicht weiter durch Leerraum. Inhalte darunter werden nie gesehen — darunter Produkte, Kontakt und Angebote.</p>
+      </div>
+      <div class="fix-box">
+        <div class="fix-label">✅ Lösung</div>
+        <p>Bereinigung der Elementor-Sektionen, Entfernen ungenutzter Abstandshalter und Optimierung der Seitenstruktur für flüssiges Nutzererlebnis.</p>
+      </div>
+    </div>
+    <div class="screenshot-area">
+      <span class="screenshot-annotation warn">⚠️ Riesiger Leerraum</span>
+      <div class="url-badge">Startseite + Sortiment + Sale</div>
+      <div class="visual-mock">
+        <div style="padding:12px;">
+          <div style="height:12px; background:#e2e8f0; border-radius:4px; margin-bottom:8px;"></div>
+          <div style="height:12px; background:#e2e8f0; border-radius:4px; width:70%; margin-bottom:8px;"></div>
+          <div style="height:200px; background: repeating-linear-gradient(45deg, #fafafa, #fafafa 10px, #f0f0f0 10px, #f0f0f0 11px); border:2px dashed #fc8181; border-radius:8px; display:flex; align-items:center; justify-content:center; margin-bottom:8px;">
+            <span style="color:#e53e3e; font-size:12px; font-weight:700; background:white; padding:6px 12px; border-radius:4px;">❌ ~400px Leerraum</span>
+          </div>
+          <div style="height:12px; background:#e2e8f0; border-radius:4px; margin-bottom:6px;"></div>
+          <div style="height:12px; background:#e2e8f0; border-radius:4px; width:80%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION: VERTRAUEN -->
+  <div class="section-header" style="margin-top: 60px;">
+    <div class="icon icon-blue">🔵</div>
+    <div>
+      <h2>Vertrauen &amp; Glaubwürdigkeit</h2>
+      <p>Fehlende Trust-Elemente, die Premium-Kunden abschrecken</p>
+    </div>
+  </div>
+
+  <!-- PROBLEM 7 -->
+  <div class="problem-card info">
+    <div>
+      <div class="problem-number" style="background:#3182ce;">7</div>
+      <div class="tag-row">
+        <span class="tag tag-blue">Trust</span>
+        <span class="tag tag-gray">Social Proof</span>
+        <span class="tag tag-gray">Conversion</span>
+      </div>
+      <div class="problem-title">🔵 Keine echten Kundenbewertungen sichtbar</div>
+      <div class="problem-desc">
+        Die Trust-Elemente beschränken sich auf drei kleine Icons mit Texten wie „Professionelle Beratung", „Ausgesuchte Produkte" und „Von Tierärzten empfohlen" — ohne einen einzigen Sternebewertung, Google-Review-Widget oder Screenshot-Beweis. Es gibt keinen Social Proof.
+      </div>
+      <div class="impact-box blue-box">
+        <div class="impact-label">💥 Business-Auswirkung</div>
+        <p>92 % der Käufer lesen Bewertungen vor dem Kauf. Ohne sichtbare Kundenstimmen wirken selbst wahre Aussagen wie leere Versprechen. Wettbewerber mit Google-Ratings gewinnen das Vertrauen zuerst.</p>
+      </div>
+      <div class="fix-box">
+        <div class="fix-label">✅ Lösung</div>
+        <p>Google Reviews Widget einbinden (LOB hat vermutlich gute Bewertungen!), Kundenzitate mit echten Namen, Fotos von zufriedenen Kunden und ihren Tieren.</p>
+      </div>
+    </div>
+    <div class="screenshot-area">
+      <span class="screenshot-annotation" style="background:#3182ce; box-shadow:none;">🔵 Kein Social Proof</span>
+      <div class="url-badge">lob-tiernahrung.de → Trust-Sektion</div>
+      <div class="visual-mock">
+        <div style="padding:16px; display:flex; gap:8px; justify-content:center;">
+          <div style="text-align:center; padding:12px; border:1px solid #e2e8f0; border-radius:8px; width:80px;">
+            <div style="font-size:18px; color:#f5a623; margin-bottom:4px;">💬</div>
+            <div style="font-size:9px; color:#4a5568; font-weight:600;">Profess. Beratung</div>
+            <div style="font-size:8px; color:#a0aec0; margin-top:4px;">— keine Bewertung —</div>
+          </div>
+          <div style="text-align:center; padding:12px; border:1px solid #e2e8f0; border-radius:8px; width:80px;">
+            <div style="font-size:18px; color:#f5a623; margin-bottom:4px;">💎</div>
+            <div style="font-size:9px; color:#4a5568; font-weight:600;">Ausges. Produkte</div>
+            <div style="font-size:8px; color:#a0aec0; margin-top:4px;">— keine Bewertung —</div>
+          </div>
+          <div style="text-align:center; padding:12px; border:1px solid #e2e8f0; border-radius:8px; width:80px;">
+            <div style="font-size:18px; color:#f5a623; margin-bottom:4px;">🏠</div>
+            <div style="font-size:9px; color:#4a5568; font-weight:600;">Von Tierärzten empf.</div>
+            <div style="font-size:8px; color:#a0aec0; margin-top:4px;">— kein Beweis —</div>
+          </div>
+        </div>
+        <div style="background:#fff5f5; padding:10px; text-align:center; font-size:11px; color:#e53e3e; font-weight:600;">
+          ❌ Keine Google-Bewertungen, keine Sterne, kein Social Proof
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 8 -->
+  <div class="problem-card info">
+    <div>
+      <div class="problem-number" style="background:#3182ce;">8</div>
+      <div class="tag-row">
+        <span class="tag tag-blue">SEO</span>
+        <span class="tag tag-gray">Content</span>
+        <span class="tag tag-gray">Vertrauen</span>
+      </div>
+      <div class="problem-title">🔵 Blog seit 2,5 Jahren tot – Autor heißt „Redakteur"</div>
+      <div class="problem-desc">
+        Im Blog-Bereich gibt es genau <strong>2 Artikel</strong>. Beide vom <strong>13. November 2023</strong>. Seither: nichts. Der Autor ist als „Redakteur" angegeben — keine echte Person, kein Foto, keine Persönlichkeit. Der Ratgeber-Bereich wirkt verlassen.
+      </div>
+      <div class="impact-box blue-box">
+        <div class="impact-label">💥 Business-Auswirkung</div>
+        <p>Ein veralteter Blog schadet doppelt: Google bestraft inaktive Seiten im Ranking, und Besucher denken „Ist der Laden noch offen?" Regelmäßige Inhalte sind der günstigste SEO-Kanal.</p>
+      </div>
+      <div class="fix-box">
+        <div class="fix-label">✅ Lösung</div>
+        <p>Regelmäßige Blogartikel (1–2/Monat) mit echtem Expertenwissen, Autorenbild und korrekten Meta-Daten. Tiere, Futter, Gesundheitstipps — das Thema schreibt sich fast von selbst.</p>
+      </div>
+    </div>
+    <div class="screenshot-area">
+      <span class="screenshot-annotation" style="background:#3182ce; box-shadow:none;">🔵 2,5 Jahre veraltet</span>
+      <div class="url-badge">lob-tiernahrung.de → Blog/Ratgeber</div>
+      <div class="visual-mock">
+        <div style="padding:14px;">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+            <div style="border:1px solid #e2e8f0; border-radius:8px; overflow:hidden;">
+              <div style="height:50px; background:#e2e8f0;"></div>
+              <div style="padding:8px;">
+                <div style="font-size:9px; font-weight:600; color:#1a1a2e; margin-bottom:4px;">Die Frage der Fragen — Nass- oder Trockenfutter?</div>
+                <div style="font-size:8px; color:#a0aec0;">👤 Redakteur · 📅 13. November 2023</div>
+              </div>
+            </div>
+            <div style="border:1px solid #e2e8f0; border-radius:8px; overflow:hidden;">
+              <div style="height:50px; background:#e2e8f0;"></div>
+              <div style="padding:8px;">
+                <div style="font-size:9px; font-weight:600; color:#1a1a2e; margin-bottom:4px;">Katzenfutter ohne Getreide: Gesundheitsfakt oder Trend?</div>
+                <div style="font-size:8px; color:#a0aec0;">👤 Redakteur · 📅 13. November 2023</div>
+              </div>
+            </div>
+          </div>
+          <div style="background:#fff3cd; border-radius:6px; padding:8px; text-align:center; margin-top:8px; font-size:10px; color:#856404; font-weight:600;">
+            ⚠️ Letzte Aktualisierung: vor 2,5 Jahren. Seither: nichts.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROBLEM 9 -->
+  <div class="problem-card info">
+    <div>
+      <div class="problem-number" style="background:#3182ce;">9</div>
+      <div class="tag-row">
+        <span class="tag tag-blue">UX</span>
+        <span class="tag tag-gray">Footer</span>
+        <span class="tag tag-gray">Kontakt</span>
+      </div>
+      <div class="problem-title">🔵 Blockierte Google Maps + minimalistischer Footer</div>
+      <div class="problem-desc">
+        Die eingebettete Google Maps-Karte ist standardmäßig gesperrt — Besucher sehen nur die Meldung „Klicke hier, um Marketing-Cookies zu akzeptieren". Die meisten tun das nicht. Der Footer enthält außerdem nur 4 Links (Impressum, Datenschutz, Partner, Kontakt) — keine Öffnungszeiten, keine E-Mail, keine Social Links.
+      </div>
+      <div class="impact-box blue-box">
+        <div class="impact-label">💥 Business-Auswirkung</div>
+        <p>Wer den Laden nicht findet, kommt nicht. Eine blockierte Karte mit Cookie-Hinweis frustriert Nutzer. Ein karger Footer ohne Öffnungszeiten wirkt unprofessionell und kostet Laufkundschaft.</p>
+      </div>
+      <div class="fix-box">
+        <div class="fix-label">✅ Lösung</div>
+        <p>Cookie-freie Karteneinbindung (z.B. OpenStreetMap), Öffnungszeiten prominent im Footer, E-Mail-Adresse und alle Kontaktwege auf einen Blick.</p>
+      </div>
+    </div>
+    <div class="screenshot-area">
+      <span class="screenshot-annotation" style="background:#3182ce; box-shadow:none;">🔵 Maps gesperrt</span>
+      <div class="url-badge">lob-tiernahrung.de → Footer</div>
+      <div class="visual-mock">
+        <div style="background:#d1d5db; height:100px; display:flex; align-items:center; justify-content:center; position:relative;">
+          <div style="background:rgba(0,0,0,0.7); color:white; font-size:10px; padding:8px 14px; border-radius:6px; text-align:center;">
+            🔒 Klicke hier, um Marketing-Cookies<br>zu akzeptieren und Inhalt zu aktivieren
+          </div>
+        </div>
+        <div style="background:#1a3a5c; padding:10px 16px; display:flex; justify-content:space-between; align-items:center;">
+          <div style="display:flex; gap:12px; font-size:9px; color:rgba(255,255,255,0.6);">
+            <span>Impressum</span><span>Datenschutz</span><span>Partner</span><span>Kontakt</span>
+          </div>
+          <div style="font-size:9px; color:rgba(255,255,255,0.5);">+49 241...</div>
+        </div>
+        <div style="background:#fff3cd; padding:8px; text-align:center; font-size:10px; color:#856404; font-weight:600;">
+          ⚠️ Keine E-Mail, keine Öffnungszeiten, kein Newsletter
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TOP 5 ===== -->
+  <div class="top5-section">
+    <h2>🏆 Top 5 Verkaufsargumente</h2>
+    <p class="subtitle">Die stärksten Punkte für das Erstgespräch — rational und emotional</p>
+    <div class="top5-grid">
+      <div class="top5-card">
+        <div class="rank">1</div>
+        <h3>💀 Technischer Fehler auf jeder Seite</h3>
+        <p>Der kaputte Shortcode-Code ist auf jeder einzelnen Seite sichtbar für alle Kunden. Das ist wie ein Schaufenster mit einem Baustellenschild — und das dauerhaft, seit Monaten. Jeder Erstbesucher sieht es sofort.</p>
+      </div>
+      <div class="top5-card">
+        <div class="rank">2</div>
+        <h3>💸 Kein Online-Shop = täglicher Umsatzverlust</h3>
+        <p>Aktuell verlässt jeder Online-Besucher die Website, ohne etwas kaufen zu können. Die Konkurrenz hat Webshops. LOB schickt Kunden aktiv zur Konkurrenz weiter — jeden Tag, 24/7.</p>
+      </div>
+      <div class="top5-card">
+        <div class="rank">3</div>
+        <h3>📱 60 % der Besucher nutzen Smartphones</h3>
+        <p>Die mobile Ansicht ist nicht optimiert. Das bedeutet: Mehr als die Hälfte aller Besucher hat eine schlechte Erfahrung und springt ab — ohne je ein Produkt zu sehen oder anzurufen.</p>
+      </div>
+      <div class="top5-card">
+        <div class="rank">4</div>
+        <h3>🌟 Null sichtbarer Social Proof</h3>
+        <p>LOB hat sicher zufriedene Stammkunden und gute Google-Bewertungen. Aber kein einziger Besucher sieht das auf der Website. Neue Kunden müssen blind vertrauen — das tun die wenigsten.</p>
+      </div>
+      <div class="top5-card">
+        <div class="rank">5</div>
+        <h3>📅 Veraltete Inhalte zerstören Vertrauen</h3>
+        <p>Black-Friday-Aktionen im April, ein Blog seit 2,5 Jahren still, Autor heißt „Redakteur" — das signalisiert: Hier investiert niemand mehr. Premium-Kunden kaufen bei Premium-Auftritten.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== VERKAUFSSÄTZE ===== -->
+  <div class="sales-section">
+    <h2>💬 Starke Verkaufssätze für das Gespräch</h2>
+    <p class="subtitle">Formulierungen mit Wirkung — direkt verwendbar</p>
+
+    <div class="sales-line">
+      <div class="quote-mark">"</div>
+      <div>
+        <blockquote>Wenn ich Ihre Website auf dem Handy öffne, sehe ich als erstes einen kaputten Programmierfehler in der Navigation. Das sieht jeder Ihrer Kunden — täglich. Das ist nicht Ihr Fehler, aber es kostet Sie Vertrauen, das Sie sich hart erarbeitet haben.</blockquote>
+        <div class="context">→ Gesprächseinstieg mit konkretem, nachweisbarem Problem. Zeigen Sie den Screenshot.</div>
+      </div>
+    </div>
+
+    <div class="sales-line">
+      <div class="quote-mark">"</div>
+      <div>
+        <blockquote>Stellen Sie sich vor: Ein Hundebesitzer aus Aachen googelt „Premium Hundefutter Aachen", findet Ihre Seite — und klickt auf „Sortiment". Er möchte bestellen. Aber er kann nicht. Er wird zu einer Drittseite weitergeleitet und kauft dort. Diesen Kunden verlieren Sie gerade jeden Tag mehrfach.</blockquote>
+        <div class="context">→ Emotionale Erzählung des verlorenen Kunden. Macht den Umsatzverlust greifbar.</div>
+      </div>
+    </div>
+
+    <div class="sales-line">
+      <div class="quote-mark">"</div>
+      <div>
+        <blockquote>Über 60 % Ihrer Websitebesucher kommen gerade von einem Smartphone. Diese Menschen sehen eine Navigation, die für einen Desktop gemacht ist — auf einem 6-Zoll-Display. Sie scrollen kurz, sind frustriert und schließen die Seite. Das ist kein theoretisches Problem, das passiert gerade, während wir reden.</blockquote>
+        <div class="context">→ Statistik kombiniert mit Dringlichkeit. Gut für skeptische Kunden.</div>
+      </div>
+    </div>
+
+    <div class="sales-line">
+      <div class="quote-mark">"</div>
+      <div>
+        <blockquote>Ich wette, Sie haben viele treue Stammkunden und gute Google-Bewertungen. Aber ein neuer Kunde, der Ihre Website besucht, sieht davon nichts. Keine Sterne, keine Bewertungen, keine Gesichter. Er muss blind vertrauen. Mit Ihrer Expertise und Ihren Bewertungen hätten Sie das stärkste Vertrauens-Signal in Aachen — wenn man es auch sehen würde.</blockquote>
+        <div class="context">→ Positivframing: Stärken hervorheben, die nur nicht sichtbar sind. Wertschätzend und motivierend.</div>
+      </div>
+    </div>
+
+    <div class="sales-line">
+      <div class="quote-mark">"</div>
+      <div>
+        <blockquote>Es steht auf Ihrer Website noch eine Black-Friday-Aktion von November letzten Jahres. Das ist jetzt April. Für einen Erstbesucher sieht das aus, als würde sich niemand mehr kümmern. Dabei ist das nur eine Frage von 5 Minuten Pflege — oder von einem System, das das automatisch für Sie regelt.</blockquote>
+        <div class="context">→ Konkretes, nachprüfbares Detail mit lösungsorientiertem Abschluss. Zeigt Ihr Detailwissen.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end container -->
+
+<!-- ===== FOOTER ===== -->
+<div class="doc-footer">
+  <strong>Vertrauliche Website-Analyse</strong> · lob-tiernahrung.de · Erstellt April 2026<br>
+  Alle Angaben basieren auf einer manuellen Live-Analyse der Website am Analysedatum.
+</div>
+
+</body>
+</html>
